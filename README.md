@@ -22,7 +22,7 @@ Current variable list:
 
 Mirrors
 ======
-| Host        | Location           | Host  |
+| Hostname        | Location           | Host  |
 | ------------- |:-------------:|:-----:|
 | [eu.mc-api.net](https://eu.mc-api.net)      | Roubaix, France | [OVH](http://imnjb.me/donate) |
 | [us.mc-api.net](https://us.mc-api.net)      | New York City, USA | [DigitalOcean](https://www.digitalocean.com/?refcode=f8c7ada39e1b) |
