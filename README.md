@@ -12,6 +12,14 @@ Please do the following:
 
 Once your pull request has been approved we will restart all mirrors and your changes will be live!
 
+**Variables** can be used within your page to display content which will be replaced by the server.
+
+Current variable list:
+- ```#YEAR#``` - Displays the current year on the server
+- ```#REGION#``` - Displays the region the server is in (US, EU, AU)
+- ```#SERVERID#``` - Displays the name of the server (Delta, Iota, Zeus)
+- ```#HOST#``` - Displays the hostname being used, for example ``eu.mc-api.net``
+
 Mirrors
 ======
 | Host        | Location           | Host  |
