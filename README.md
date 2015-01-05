@@ -19,6 +19,7 @@ Current variable list:
 - ```#REGION#``` - Displays the region the server is in (US, EU, AU)
 - ```#SERVERID#``` - Displays the name of the server (Delta, Iota, Zeus)
 - ```#HOST#``` - Displays the hostname being used, for example ``eu.mc-api.net``
+- ```#FLAG#``` - Displays a flag representing the country the server is in
 
 Mirrors
 ======
