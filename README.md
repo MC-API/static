@@ -1,4 +1,4 @@
-static [![Build Status](http://build.mc-api.net/buildStatus/icon?job=mcapi)](http://build.mc-api.net/job/mcapi/)
+static ![Build Status](http://build.mc-api.net/buildStatus/icon?job=mcapi)
 ======
 
 Static content for [mc-api.net](https://mc-api.net)
