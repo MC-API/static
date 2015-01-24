@@ -16,6 +16,8 @@
         <div class="content">
             <h2><i class="fa fa-code"></i> MC-API
                 <div class="pull-right">
+                    <button onclick="donateForm()" type="button" class="btn btn-success"><i class="fa fa-paypal"></i> Donate with PayPal</button>
+
                     <div class="btn-group">
                         <a href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Change Server <span class="caret"></span></a>
                         <ul class="dropdown-menu">
@@ -34,75 +36,83 @@
                 <p class="col-md-5">Dashes will be removed from the uuid automatically. The query will return a JSON object:</p>
             </div>
             <pre>
-                {
-                    "full_uuid": "b0588118-6e75-410d-b2db-4d3066b223f7",
-                    "source": "database",
-                    "query": "marc",
-                    "name": "Marc",
-                    "took": 0,
-                    "uuid": "b05881186e75410db2db4d3066b223f7"
-                }       </pre>
-                <div class="row">
-                    <p class="col-md-5 col-md-offset-1"><br>This object conatins the case-correct username associated with the query UUID. If the UUID is not registed with mojang, the following will be returned: <br><code>{"error":"Unknown UUID","query":"unknown"}</code></p>
-                    <p class="text-muted">All queries that go to mojang will take slightly longer than others.</p>
-                    <div class="col-md-6">
-                        <table class="table text-center">
-                            <thead>
-                                <tr>
-                                    <td width="15%"><strong>Field</strong></td>
-                                    <td width="20%"><strong>Object</strong></td>
-                                    <td width="65%"><strong>Description</strong></td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>"full_uuid"</td><td>StringUUID</td><td>The uuid of the player in java format.</td>
-                                </tr>
-                                <tr>
-                                    <td>"source"</td><td>String</td><td>If the server looked in the database, cache or mojang.</td>
-                                </tr>
-                                <tr>
-                                    <td>"query"</td><td>String</td><td>The original query.</td>
-                                </tr>
-                                <tr>
-                                    <td>"name"</td><td>String</td><td>The username in correct case.</td>
-                                </tr>
-                                <tr>
-                                    <td>"took"</td><td>Integer</td><td>How long the query took.</td>
-                                </tr>
-                                <tr>
-                                    <td>"uuid"</td><td>String</td><td>The uuid without "-"'s</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+            {
+                "full_uuid": "b0588118-6e75-410d-b2db-4d3066b223f7",
+                "source": "database",
+                "query": "marc",
+                "name": "Marc",
+                "took": 0,
+                "uuid": "b05881186e75410db2db4d3066b223f7"
+            }       </pre>
+            <div class="row">
+                <p class="col-md-5 col-md-offset-1"><br>This object conatins the case-correct username associated with the query UUID. If the UUID is not registed with mojang, the following will be returned: <br><code>{"error":"Unknown UUID","query":"unknown"}</code></p>
+                <p class="text-muted">All queries that go to mojang will take slightly longer than others.</p>
+                <div class="col-md-6">
+                    <table class="table text-center">
+                        <thead>
+                            <tr>
+                                <td width="15%"><strong>Field</strong></td>
+                                <td width="20%"><strong>Object</strong></td>
+                                <td width="65%"><strong>Description</strong></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>"full_uuid"</td><td>StringUUID</td><td>The uuid of the player in java format.</td>
+                            </tr>
+                            <tr>
+                                <td>"source"</td><td>String</td><td>If the server looked in the database, cache or mojang.</td>
+                            </tr>
+                            <tr>
+                                <td>"query"</td><td>String</td><td>The original query.</td>
+                            </tr>
+                            <tr>
+                                <td>"name"</td><td>String</td><td>The username in correct case.</td>
+                            </tr>
+                            <tr>
+                                <td>"took"</td><td>Integer</td><td>How long the query took.</td>
+                            </tr>
+                            <tr>
+                                <td>"uuid"</td><td>String</td><td>The uuid without "-"'s</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-                </div>
-                <hr>
-                <footer>
-                    <ul class="nav nav-pills">
-                        <li class="text-muted disclaimer">MC-API is not affiliated with Mojang AB or Minecraft.net</li>
-                        <li class="pull-right">
-                            <a>&copy; #YEAR# mc-api.net</a>
-                        </li>
-                        <li class="pull-right">
-                            <a target="_blank" href="https://github.com/mc-api/issues"><i class="fa fa-bug"></i> Bug Report</a>
-                        </li>
-                    </ul>
-                </footer>
             </div>
-            <br>
-            <script type="text/javascript" src="//cdn.imnjb.me/libs/jquery/2.1.1/jquery.min.js"></script>
-            <script type="text/javascript" src="//cdn.imnjb.me/libs/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-            <script data-cfasync="false">
-                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-                })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        </div>
+        <hr>
+        <footer>
+            <ul class="nav nav-pills">
+                <li class="text-muted disclaimer">MC-API is not affiliated with Mojang AB or Minecraft.net</li>
+                <li class="pull-right">
+                    <a>&copy; #YEAR# mc-api.net</a>
+                </li>
+                <li class="pull-right">
+                    <a target="_blank" href="https://github.com/mc-api/issues"><i class="fa fa-bug"></i> Bug Report</a>
+                </li>
+            </ul>
+        </footer>
+    </div>
+    <br>
+    <script type="text/javascript" src="//cdn.imnjb.me/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="//cdn.imnjb.me/libs/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <script data-cfasync="false">
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-                ga('create', '#GA#', 'auto');
-                ga('send', 'pageview');
-
-            </script>
-        </body>
-        </html>
+        ga('create', '#GA#', 'auto');
+        ga('send', 'pageview');
+    </script>
+    <form id="donateForm" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+        <input type="hidden" name="cmd" value="_s-xclick">
+        <input type="hidden" name="hosted_button_id" value="6QWKJJU9L3EQS">
+    </form>
+    <script type="text/javascript">
+        function donateForm() {
+            $('#donateForm').submit();
+        }
+    </script>
+</body>
+</html>
