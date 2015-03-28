@@ -31,18 +31,16 @@
         </h2>
         <hr>
         <br>
-        <p class="hello" id="simple">Username to UUID</p>
-        <p>This endpoint provides the UUID of a given username. Returns <kbd>JSON</kbd> or <kbd>CSV</kbd> cached for 10 minutes.</p>
+        <p class="hello" id="simple">Migration Status</p>
+        <p>This endpoint allows you to check if an account is <a target="_blank" href="https://account.mojang.com/migrate">migrated</a> or not. Returns <kbd>JSON</kbd> cached for 8 hours.</p>
         <p class="api-list">Example Usage</p>
-        <p><code>https://#HOST#/v3/uuid/notch</code> would return:</p>
+        <p><code>https://#HOST#/v3/migrated/Marc</code> would return:</p>
         <pre>
 {
-    "full_uuid": "069a79f4-44e9-4726-a5be-fca90e38aaf5",
-    "source": "database",
-    "query": "notch",
-    "name": "Notch",
-    "took": 24,
-    "uuid": "069a79f444e94726a5befca90e38aaf5"
+    "source": "mojang",
+    "query": "Marc",
+    "took": 600,
+    "migrated": true
 }
         </pre>
         <p class="rules">Explanation</p>
@@ -54,9 +52,9 @@
             </tr>
 
             <tr>
-                <td>"full_uuid"</td>
-                <td>StringUUID</td>
-                <td>The UUID of the player in Java format</td>
+                <td>"migrated"</td>
+                <td>Boolean</td>
+                <td>If the account is migrated or not</td>
             </tr>
             <tr>
                 <td>"source"</td>
@@ -69,52 +67,11 @@
                 <td>The original query.</td>
             </tr>
             <tr>
-                <td>"name"</td>
-                <td>String</td>
-                <td>The username in correct case.</td>
-            </tr>
-            <tr>
                 <td>"took"</td>
                 <td>Integer</td>
                 <td>How long the query took.</td>
             </tr>
-            <tr>
-                <td>"uuid"</td>
-                <td>String</td>
-                <td>The UUID of the player without hyphens</td>
-            </tr>
         </table>
-
-
-        <p class="hello" id="advanced">Multiple Usernames to UUIDs</p>
-        <p>This endpoint provides the UUIDs of multiple usernames. Returns <kbd>JSON</kbd> cached for 10 minutes.</p>
-        <p class="api-list">Example Usage</p>
-        <p><code>https://#HOST#/v3/uuid/notch,dinnerbone</code> would return:</p>
-        <pre>
-{
-    "failed": [],
-    "success": [
-        {
-            "full_uuid": "069a79f4-44e9-4726-a5be-fca90e38aaf5",
-            "source": "cache",
-            "query": "notch",
-            "name": "Notch",
-            "took": 0,
-            "uuid": "069a79f444e94726a5befca90e38aaf5"
-        },
-        {
-            "full_uuid": "61699b2e-d327-4a01-9f1e-0ea8c3f06bc6",
-            "source": "database",
-            "query": "dinnerbone",
-            "name": "Dinnerbone",
-            "took": 21,
-            "uuid": "61699b2ed3274a019f1e0ea8c3f06bc6"
-        }
-    ]
-}
-        </pre>
-        <p class="rules">Explanation</p>
-        <p>You can request upto 5 uuids at a time, any failed requests will be in the <kbd>failed</kbd> array.</p>
     </div>
     <hr>
     <footer>

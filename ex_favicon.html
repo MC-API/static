@@ -31,90 +31,13 @@
         </h2>
         <hr>
         <br>
-        <p class="hello" id="simple">Username to UUID</p>
-        <p>This endpoint provides the UUID of a given username. Returns <kbd>JSON</kbd> or <kbd>CSV</kbd> cached for 10 minutes.</p>
+        <p class="hello" id="simple">Server Favicon <small><kbd>BETA</kbd></small></p>
+        <p>This endpoint allows you to get the favicon of a server. Returns <kbd>PNG</kbd> cached for 5 minutes.</p>
         <p class="api-list">Example Usage</p>
-        <p><code>https://#HOST#/v3/uuid/notch</code> would return:</p>
-        <pre>
-{
-    "full_uuid": "069a79f4-44e9-4726-a5be-fca90e38aaf5",
-    "source": "database",
-    "query": "notch",
-    "name": "Notch",
-    "took": 24,
-    "uuid": "069a79f444e94726a5befca90e38aaf5"
-}
-        </pre>
-        <p class="rules">Explanation</p>
-        <table class="table table-condensed">
-            <tr class="bold">
-                <td width="20%">Field</td>
-                <td width="35%">Type</td>
-                <td width="45%">Description</td>
-            </tr>
-
-            <tr>
-                <td>"full_uuid"</td>
-                <td>StringUUID</td>
-                <td>The UUID of the player in Java format</td>
-            </tr>
-            <tr>
-                <td>"source"</td>
-                <td>String</td>
-                <td>If the response was from mojang or cached.</td>
-            </tr>
-            <tr>
-                <td>"query"</td>
-                <td>String</td>
-                <td>The original query.</td>
-            </tr>
-            <tr>
-                <td>"name"</td>
-                <td>String</td>
-                <td>The username in correct case.</td>
-            </tr>
-            <tr>
-                <td>"took"</td>
-                <td>Integer</td>
-                <td>How long the query took.</td>
-            </tr>
-            <tr>
-                <td>"uuid"</td>
-                <td>String</td>
-                <td>The UUID of the player without hyphens</td>
-            </tr>
-        </table>
-
-
-        <p class="hello" id="advanced">Multiple Usernames to UUIDs</p>
-        <p>This endpoint provides the UUIDs of multiple usernames. Returns <kbd>JSON</kbd> cached for 10 minutes.</p>
-        <p class="api-list">Example Usage</p>
-        <p><code>https://#HOST#/v3/uuid/notch,dinnerbone</code> would return:</p>
-        <pre>
-{
-    "failed": [],
-    "success": [
-        {
-            "full_uuid": "069a79f4-44e9-4726-a5be-fca90e38aaf5",
-            "source": "cache",
-            "query": "notch",
-            "name": "Notch",
-            "took": 0,
-            "uuid": "069a79f444e94726a5befca90e38aaf5"
-        },
-        {
-            "full_uuid": "61699b2e-d327-4a01-9f1e-0ea8c3f06bc6",
-            "source": "database",
-            "query": "dinnerbone",
-            "name": "Dinnerbone",
-            "took": 21,
-            "uuid": "61699b2ed3274a019f1e0ea8c3f06bc6"
-        }
-    ]
-}
-        </pre>
-        <p class="rules">Explanation</p>
-        <p>You can request upto 5 uuids at a time, any failed requests will be in the <kbd>failed</kbd> array.</p>
+        <p><code>https://#HOST#/v3/server/favicon/mc.hypixel.net</code></p>
+        <img src="//#HOST#/v3/server/favicon/mc.hypixel.net">
+        <h4 class="text-center">This endpoint is in BETA and may not always respond correctly, use with caution.</h4>
+        <br>
     </div>
     <hr>
     <footer>
