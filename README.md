@@ -8,7 +8,6 @@ Powered by [njb-said/webserver](https://github.com/njb-said/webserver) and [ngin
 Contributing
 ======
 Please do the following:
-- Commit to the ``dev`` branch
 - Use spaces not tabs
 - Submit a pull request
 
