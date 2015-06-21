@@ -32,6 +32,29 @@
         <hr>
         <p class="hello">Hello</p>
         <p>This is mc-api.net, a collection of fast and free Minecraft related APIs.</p>
+
+        <p class="api-list">What is the UUID for a player?</p>
+        <div class="row">
+            <div class="col-md-7">
+                <div class="alert alert-danger" id="uuidtoname" style="display:none;">
+                </div>
+            </div>
+        </div>
+        <form method="post" data-form="uuidtoname">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label>Enter Username/UUID</label>
+                        <input name="query" required class="form-control" type="text">
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label></label>
+                    <button type="submit" class="btn btn-info btn-block" style="margin-top:5px">Resolve</button>
+                </div>
+            </div>
+        </form>
+
         <p class="api-list">What APIs do we offer?</p>
         <p>There are a few APIs you can use:</p>
         <table class="table table-hover table-condensed table-bordered">
@@ -95,6 +118,7 @@
         </table>
         <p>By default, endpoints which offer JSON responses will have documentation in JSON. To get a response in CSV (Plain Text) append your request with /csv</p>
         <p>Eg: <code>https://#HOST#/v3/server/info/hivemc.eu/csv</code> would give you information about <a target="_blank" href="http://hivemc.com">TheHive</a> in CSV format.</p>
+        
         <p class="rules">A couple of rules</p>
         <p>There are just a couple of things that aren't allowed such as:</p>
         <ul>
@@ -141,6 +165,38 @@
         function donateForm() {
             $('#donateForm').submit();
         }
+
+        $(document).ready(function() {
+            $('form[data-form="uuidtoname"]').on('submit', function(e) {
+                e.preventDefault();
+                $('#uuidtoname').slideUp('fast').removeClass('alert-danger alert-success');
+                var query = $('input[name="query"]').val();
+
+                $.ajax({
+                    url: '/v3/' + (query.length > 16 ? 'name' : 'uuid') + '/' + query,
+                    type: 'post',
+                    async: true,
+                    success: function(resp) {
+                        if(resp.error) {
+                            $('#uuidtoname').addClass('alert-danger').html(resp.error).slideDown();
+                        } else {
+                            var isUUIDRequest = (query.length > 16);
+                            if(isUUIDRequest) {
+                                $('#uuidtoname').addClass('alert-success').html('<strong>Username:</strong> ' + resp.name + ', source: ' + resp.source).slideDown();
+                            } else {
+                                $('#uuidtoname').addClass('alert-success').html('<strong>UUID:</strong> ' + resp.uuid + ', source: ' + resp.source).slideDown();
+                            }                            
+                        }
+                    },
+                    error: function(e1, e2, e3) {
+                        console.log('SEVERE >> ' + e3);
+                        $('#uuidtoname').addClass('alert-danger').html(e3).slideDown();
+                    }
+                });
+
+                return false;
+            });
+        });
     </script>
 </body>
 </html>
