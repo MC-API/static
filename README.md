@@ -17,7 +17,7 @@ Once your pull request has been approved we will restart all mirrors and your ch
 
 Current variable list:
 - ```#YEAR#``` - Displays the current year on the server
-- ```#REGION#``` - Displays the region the server is in (US, EU, AU)
+- ```#REGION#``` - Displays the region the server is in (US, EU)
 - ```#SERVERID#``` - Displays the name of the server (Delta, Iota, Zeus)
 - ```#HOST#``` - Displays the hostname being used, for example ``eu.mc-api.net``
 - ```#FLAG#``` - Displays a flag representing the country the server is in
@@ -29,4 +29,5 @@ Mirrors
 | ------------- |:-------------:|:-----:|:---------:|
 | [eu.mc-api.net](https://eu.mc-api.net)      | Roubaix, France | [OVH](http://imnjb.me/donate) | EU |
 | [us.mc-api.net](https://us.mc-api.net)      | New York City, USA | [DigitalOcean](https://www.digitalocean.com/?refcode=f8c7ada39e1b) | US |
-| [au.mc-api.net](https://au.mc-api.net)      | Sydney, Australia | [NetOrigin](https://clients.netorigin.com.au/aff.php?aff=121) | AU |
+
+AU is being replaced with another region as it was least used (less than 500 requests per month)
