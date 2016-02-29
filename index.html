@@ -127,9 +127,9 @@
         </ul>
         <p>You acknowledge by using the service that all requests are logged and you may be denied access to the service at any time without prior notification or approval. However a reason may be provided.</p>
 
-        <p class="hello">Donations</p>
-        <p>MC-API receives thousands of requests everyday across its servers, keeping it online is quite expensive. If you want to donate that would be great! But if you don't we understand.
-        <button onclick="donateForm()" type="button" style="margin-top:5px" class="btn btn-success btn-sm btn-block"><i class="fa fa-paypal"></i> Donate with PayPal</button>
+        <p class="hello">Support Us</p>
+        <p>MC-API receives thousands of requests everyday across its servers, keeping it online is quite expensive. If you want to support us that would be great! But if you don't, we understand.
+        <button onclick="contributeForm()" type="button" style="margin-top:5px" class="btn btn-success btn-sm btn-block"><i class="fa fa-paypal"></i> Contribute with PayPal</button>
     </div>
     <hr>
     <footer>
@@ -159,13 +159,13 @@
     ga('create', '#GA#', 'auto');
     ga('send', 'pageview');
     </script>
-    <form id="donateForm" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <form id="contributeForm" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
         <input type="hidden" name="cmd" value="_s-xclick">
         <input type="hidden" name="hosted_button_id" value="6QWKJJU9L3EQS">
     </form>
     <script type="text/javascript">
-        function donateForm() {
-            $('#donateForm').submit();
+        function contributeForm() {
+            $('#contributeForm').submit();
         }
 
         $(document).ready(function() {
