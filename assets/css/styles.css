@@ -86,11 +86,11 @@ code {
 /* Created by icomoon so we don't need ALL of fontawesome */
 @font-face {
     font-family: 'mcapi';
-    src:    url('/assets/fonts/mcapi.eot?thf7ia');
-    src:    url('/assets/fonts/mcapi.eot?thf7ia#iefix') format('embedded-opentype'),
-        url('/assets/fonts/mcapi.ttf?thf7ia') format('truetype'),
-        url('/assets/fonts/mcapi.woff?thf7ia') format('woff'),
-        url('/assets/fonts/mcapi.svg?thf7ia#mcapi') format('svg');
+    src:    url('/fonts/mcapi.eot?thf7ia');
+    src:    url('/fonts/mcapi.eot?thf7ia#iefix') format('embedded-opentype'),
+        url('/fonts/mcapi.ttf?thf7ia') format('truetype'),
+        url('/fonts/mcapi.woff?thf7ia') format('woff'),
+        url('/fonts/mcapi.svg?thf7ia#mcapi') format('svg');
     font-weight: normal;
     font-style: normal;
 }
