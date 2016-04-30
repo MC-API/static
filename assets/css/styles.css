@@ -1,5 +1,3 @@
-@import url("//cdn.imnjb.me/libs/fontawesome/4.4.0/css/font-awesome.min.css");
-
 html, body, p, h1, h2, h3, h4, h5, h6 {
     font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
@@ -83,4 +81,83 @@ hr {
 code {
     color: #000000;
     background-color: #E0E0E0;
+}
+
+/* Created by icomoon so we don't need ALL of fontawesome */
+@font-face {
+    font-family: 'mcapi';
+    src:    url('/assets/fonts/mcapi.eot?thf7ia');
+    src:    url('/assets/fonts/mcapi.eot?thf7ia#iefix') format('embedded-opentype'),
+        url('/assets/fonts/mcapi.ttf?thf7ia') format('truetype'),
+        url('/assets/fonts/mcapi.woff?thf7ia') format('woff'),
+        url('/assets/fonts/mcapi.svg?thf7ia#mcapi') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="fa-"], [class*=" fa-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'mcapi' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.fa-refresh:before {
+    content: "\e907";
+}
+.fa-trash-o:before {
+    content: "\e900";
+}
+.fa-exclamation-triangle:before {
+    content: "\e901";
+}
+.fa-bar-chart:before {
+    content: "\e902";
+}
+.fa-bug:before {
+    content: "\e903";
+}
+.fa-bolt:before {
+    content: "\e904";
+}
+.fa-code:before {
+    content: "\e905";
+}
+.fa-paypal:before {
+    content: "\e906";
+}
+
+.fa-spin-quick {
+    -webkit-animation: fa-spin .7s infinite linear;
+    animation: fa-spin .7s infinite linear
+}
+
+@-webkit-keyframes fa-spin-quick {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg)
+    }
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg)
+    }
+}
+
+@keyframes fa-spin-quick {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg)
+    }
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg)
+    }
 }
