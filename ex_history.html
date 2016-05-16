@@ -15,17 +15,9 @@
 <body>
 <div class="container card">
     <div class="content">
-        <h2><i class="fa fa-code"></i> MC-API <small>#REGION# #FLAG#</small>
+        <h2><i class="fa fa-code"></i> MC-API
             <div class="pull-right">
                 <a href="/#supportus" class="btn btn-success"><i class="fa fa-paypal"></i> Contribute via PayPal</a>
-
-                <div class="btn-group">
-                    <a href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Change Server <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="https://eu.mc-api.net"><i class="fa fa-caret-right"></i> <span class="flag-fr"></span> Roubaix, France</a></li>
-                        <li><a href="https://us.mc-api.net"><i class="fa fa-caret-right"></i> <span class="flag-us"></span> New York City, USA</a></li>
-                    </ul>
-                </div>
             </div>
         </h2>
         <hr>
@@ -33,7 +25,7 @@
         <p class="hello">Username History</p>
         <p>This endpoint provides a list of usernames a UUID has been known as in the past. Returns <kbd>JSON</kbd> cached for 15 minutes.</p>
         <p class="api-list">Example Usage</p>
-        <p><code>https://#HOST#/v3/history/61699b2ed3274a019f1e0ea8c3f06bc6</code> would return:</p>
+        <p><code>https://api.#REGION#.mc-api.net/history/61699b2ed3274a019f1e0ea8c3f06bc6</code> would return:</p>
         <pre>
 {
     "history": [
