@@ -15,17 +15,9 @@
 <body>
     <div class="container card">
     <div class="content">
-        <h2><i class="fa fa-code"></i> MC-API <small>#REGION# #FLAG#</small>
+        <h2><i class="fa fa-code"></i> MC-API
             <div class="pull-right">
                 <a href="/#supportus" class="btn btn-success"><i class="fa fa-paypal"></i> Contribute via PayPal</a>
-
-                <div class="btn-group">
-                    <a href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Change Server <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="https://eu.mc-api.net"><i class="fa fa-caret-right"></i> <span class="flag-fr"></span> Roubaix, France</a></li>
-                        <li><a href="https://us.mc-api.net"><i class="fa fa-caret-right"></i> <span class="flag-us"></span> New York City, USA</a></li>
-                    </ul>
-                </div>
             </div>
         </h2>
         <hr>
@@ -33,11 +25,11 @@
         <p class="hello" id="simple">Server Info</p>
         <p>This endpoint allows you to get information about a server such as player count, motd and favicon. Returns <kbd>JSON</kbd> or <kbd>CSV</kbd> cached for 5 minutes.</p>
         <p class="api-list">Example Usage</p>
-        <p><code>https://#HOST#/v3/server/info/hivemc.eu</code> would return:</p>
+        <p><code>https://api.#REGION#.mc-api.net/server/info/hivemc.eu</code> would return:</p>
         <pre>
 {
     "source": "ping",
-    "favicon": "https://#HOST#/v3/server/favicon/hivemc.eu",
+    "favicon": "https://api.#REGION#.mc-api.net/server/favicon/hivemc.eu",
     "status": true,
     "players": {
         "max": 20000,
