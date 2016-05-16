@@ -15,17 +15,9 @@
 <body>
 <div class="container card">
     <div class="content">
-        <h2><i class="fa fa-code"></i> MC-API <small>#REGION# #FLAG#</small>
+        <h2><i class="fa fa-code"></i> MC-API
             <div class="pull-right">
                 <button onclick="contributeForm()" type="button" class="btn btn-success"><i class="fa fa-paypal"></i> Contribute with PayPal</button>
-
-                <div class="btn-group">
-                    <a href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Change Server <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="https://eu.mc-api.net"><i class="fa fa-caret-right"></i> <span class="flag-fr"></span> Roubaix, France</a></li>
-                        <li><a href="https://us.mc-api.net"><i class="fa fa-caret-right"></i> <span class="flag-us"></span> New York City, USA</a></li>
-                    </ul>
-                </div>
             </div>
         </h2>
         <hr>
@@ -68,55 +60,55 @@
             <tr>
                 <td>Username -> UUID</td>
                 <td>Convert a username into a UUID</td>
-                <td><code>/v3/uuid</code></td>
+                <td><code>/uuid</code></td>
                 <td><code>JSON</code> or <code>CSV</code> <span class="text-muted">(Plain Text)</span></td>
                 <td><a href="/example/uuid">/example/uuid</a></td>
             </tr>
             <tr>
                 <td>Usernames -> UUIDs</td>
                 <td>Convert multiple usernames</td>
-                <td><code>/v3/uuid</code></td>
+                <td><code>/uuid</code></td>
                 <td><code>JSON</code> or <code>CSV</code> <span class="text-muted">(Plain Text)</span></td>
                 <td><a href="/example/uuid#advanced">/example/uuid#advanced</a></td>
             </tr>
             <tr>
                 <td>UUID -> Username</td>
                 <td>Get the Username related to a UUID</td>
-                <td><code>/v3/name</code></td>
+                <td><code>/name</code></td>
                 <td><code>JSON</code> or <code>CSV</code> <span class="text-muted">(Plain Text)</span></td>
                 <td><a href="/example/name">/example/name</a></td>
             </tr>
             <tr>
+                <td>UUID -> Properties</td>
+                <td>Get the profile properties for a uuid</td>
+                <td><code>/properties</code></td>
+                <td><code>JSON</code> or <code>CSV</code> <span class="text-muted">(Plain Text)</span></td>
+                <td><a href="/example/properties">/example/name</a></td>
+            </tr>
+            <tr>
                 <td>Username History</td>
                 <td>Get the Username history related to a UUID</td>
-                <td><code>/v3/history</code></td>
+                <td><code>/history</code></td>
                 <td><code>JSON</code></td>
                 <td><a href="/example/history">/example/history</a></td>
             </tr>
             <tr>
-                <td>Migration Status</td>
-                <td>Check if an account is migrated</td>
-                <td><code>/v3/migrated</code></td>
-                <td><code>JSON</code></td>
-                <td><a href="/example/migrated">/example/migrated</a></td>
-            </tr>
-            <tr>
                 <td>Server Info</td>
                 <td>Get the info about a server</td>
-                <td><code>/v3/server/info</code></td>
+                <td><code>/server/info</code></td>
                 <td><code>JSON</code> or <code>CSV</code> <span class="text-muted">(Plain Text)</span></td>
                 <td><a href="/example/ping">/example/ping</a></td>
             </tr>
             <tr>
                 <td>Server Favicon</td>
                 <td>Get the Favicon of a server</td>
-                <td><code>/v3/server/favicon</code></td>
+                <td><code>/server/favicon</code></td>
                 <td><code>PNG</code></td>
                 <td><a href="/example/favicon">/example/favicon</a></td>
             </tr>
         </table>
         <p>By default, endpoints which offer JSON responses will have documentation in JSON. To get a response in CSV (Plain Text) append your request with /csv</p>
-        <p>Eg: <code>https://#HOST#/v3/server/info/hivemc.eu/csv</code> would give you information about <a target="_blank" href="http://hivemc.com">TheHive</a> in CSV format.</p>
+        <p>Eg: <code>https://api.#HOST#/server/info/hivemc.eu/csv</code> would give you information about <a target="_blank" href="http://hivemc.com">TheHive</a> in CSV format.</p>
         
         <p class="rules">A couple of rules</p>
         <p>There are just a couple of things that aren't allowed such as:</p>
