@@ -3,8 +3,6 @@ static ![Build Status](http://build.mc-api.net/buildStatus/icon?job=mcapi)
 
 Static content for [mc-api.net](https://mc-api.net).
 
-Powered by [njb-said/webserver](https://github.com/njb-said/webserver) and [nginx](http://nginx.org/)
-
 Contributing
 ======
 Please do the following:
@@ -27,7 +25,7 @@ Mirrors
 ======
 | Hostname        | Location           | Host  | Enum Constant |
 | ------------- |:-------------:|:-----:|:---------:|
-| [eu.mc-api.net](https://eu.mc-api.net)      | Roubaix, France | [OVH](http://imnjb.me/donate) | EU |
+| [eu.mc-api.net](https://eu.mc-api.net)      | Roubaix, France | [DigitalOcean](https://www.digitalocean.com/?refcode=f8c7ada39e1b) | EU |
 | [us.mc-api.net](https://us.mc-api.net)      | New York City, USA | [DigitalOcean](https://www.digitalocean.com/?refcode=f8c7ada39e1b) | US |
 
 There was previously an AU region, it may come back in the future however it was least used (less than 500 requests per month)
