@@ -16,6 +16,11 @@
 <p>It is very simple, click the <a href="/manage">Account</a> button in the navigation bar and follow the instructions to login with Twitter.</p>
 {{/user.authed}}
 
+<h5 class="bold">Am I rate limited for cached responses?</h5>
+<p>If our servers have a response for your request cached then no, it will not be rate limited nor will you require an API key.</p>
+<p>In other words: If you are asking for something that is cached you don't need an API key and rate limits don't apply!</p>
+<p class="text-muted">This may seem silly, but there are some niche use cases for this functionality, it also speeds up cached responses.</p>
+
 <h5 class="bold">Why do I need to login with Twitter?</h5>
 <p style="margin-bottom:0">We use Twitter to handle authentication, this allows you to have all of the security features built in to Twitter (such as two-factor authentication) as well as the convenience of not needing a username/password for another site.</p>
 <p style="margin-bottom:.3em;margin-top:.3em">We <strong>cannot</strong> post tweets, access your direct messages or other private information.</p>
