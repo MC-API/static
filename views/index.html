@@ -1,0 +1,41 @@
+<h3 id="hello">Hello</h3>
+<p>This is mc-api.net, a collection of Minecraft related APIs.</p>
+<h4 id="usage">Usage</h4>
+<p>Our APIs are simple to use, just follow the instructions below:</p>
+<ol>
+    <li>Find the API you want to use.</li>
+    <li>Register for an API key (<a href="/why_api_key">why do I need this?</a>)</li>
+    <li>Send your request with API key (<a href="/sandbox">Show me an example!</a>)</li>
+</ol>
+<p><strong>Can I use the API without an API key?</strong></p>
+<p>Yes, temporarily we are allowing limited access without an API key. This is to allow people to transition and update their applications to use an API key.</p>
+<p><strong>Do all APIs require an API key?</strong></p>
+<p>No, the server ping and server favicon APIs do not require an API key.</p>
+<h4 id="apis">What APIs are available?</h4>
+<table class="striped responsive-table highlight">
+    <thead>
+        <tr>
+            <td>Function</td>
+            <td>Description</td>
+            <td>Documentation</td>
+            <td>Response Types</td>
+            <td style="text-align: center">Requires API key?</td>
+        </tr>
+    </thead>
+    <tbody>
+        {{#mcapi.api_list}}
+        <tr>
+            <td>{{function}}</td>
+            <td>{{description}}</td>
+            <td><a href="/docs/{{docs}}">/docs/{{docs}}</a></td>
+            <td>{{{response_type_desc}}}</td>
+            <td style="text-align: center">{{#api_key}}Yes{{/api_key}}{{^api_key}}No{{/api_key}}</td>
+        </tr>
+        {{/mcapi.api_list}}
+    </tbody>
+</table>
+{{^mcapi.api_list}}
+<p style="text-align: center">No documentation found.</p>
+{{/mcapi.api_list}}
+<br>
+<p>If an endpoint supports JSON, then that will be the default response type unless stated otherwise. To get a CSV (Plain Text) response append your request with <kbd>/csv</kbd></p>

@@ -1,0 +1,21 @@
+<h4>Why do I need an API key?</h4>
+<p>It was a tough decision to make, but in May 2016 we decided to require an API key for proper access to our APIs.</p>
+<p>We had to do this for a number of reasons:</p>
+<ul class="inline">
+    <li>To ease communication between us and you.</li>
+    <li>To allow us to tailor the API to your needs.</li>
+    <li>To make it easier to block malicious users.</li>
+    <li>To ensure fair use of the API.</li>
+</ul>
+
+<h5 class="bold">How can I get an API key?</h5>
+{{#user.authed}}
+<p>To view or re-generate your API key <a href="/manage">click here</a>.</p>
+{{/user.authed}}
+{{^user.authed}}
+<p>It is very simple, click the <a href="/manage">Account</a> button in the navigation bar and follow the instructions to login with Twitter.</p>
+{{/user.authed}}
+
+<h5 class="bold">Why do I need to login with Twitter?</h5>
+<p style="margin-bottom:0">We use Twitter to handle authentication, this allows you to have all of the security features built in to Twitter (such as two-factor authentication) as well as the convenience of not needing a username/password for another site.</p>
+<p style="margin-bottom:.3em;margin-top:.3em">We <strong>cannot</strong> post tweets, access your direct messages or other private information.</p>
