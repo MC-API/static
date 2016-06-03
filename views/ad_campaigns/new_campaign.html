@@ -1,0 +1,80 @@
+<h3>Advertise with us</h3>
+{{#load_error}}
+<p><strong>Error:</strong> {{load_error}}</p>
+{{/load_error}}
+{{^load_error}}
+<div class="card-panel red lighten-1" id="create-error">
+</div>
+<div class="card-panel amber lighten-2">
+    <p style="margin-top:0">You are creating an ad campaign for the <strong>{{campaign.slot}} ad slot</strong>, for 31 days costing &dollar;{{campaign.cost}}.<br>
+    You can optionally provide a mobile-friendly banner which we will show to devices with a width smaller than 425 pixels.</p>
+    <p>Maximum dimensions for banners:</p>
+    <ul class="inline">
+        <li>Standard Banner: 850x100px</li>
+        <li>Mobile (Devices with a width less than 425 pixels) 330x45px</li>
+    </ul>
+</div>
+<br>
+<div class="row">
+    <form class="col s12" data-action="new_campaign">
+        <input name="slot" type="hidden" value="{{campaign.slot}}">
+        <div class="row">
+            <div class="input-field col s4">
+                <input placeholder="Your name" id="name" name="name" pattern="{2,}" type="text" class="validate" required>
+                <label for="name">Name</label>
+            </div>
+            <div class="input-field col s4">
+                <input id="email" name="email" type="email" class="validate" required>
+                <label for="email">Contact Email</label>
+            </div>
+            <div class="input-field col s4">
+                <input id="org" name="org" type="text" class="validate" pattern="{2,}" required autocomplete="off">
+                <label for="org">Organization</label>
+            </div>
+            <div class="input-field col s6">
+                <input id="banner_link" name="banner_link" type="text" class="validate" required autocomplete="off">
+                <label for="banner_link">Banner Link</label>
+            </div>
+            <div class="input-field col s6">
+                <input id="banner_link_mobile" name="banner_link_mobile" type="text" class="validate" autocomplete="off">
+                <label for="banner_link_mobile">Mobile Friendly Banner Link</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col m7 s12">
+                <div class="card red lighten-3">
+                    <div class="card-content">
+                        <span class="card-title">
+                            Terms and Conditions
+                        </span>
+                        <ul class="inline" style="margin-top: 0">
+                            <li>Your banners must be hosted on <strong>imgur.com</strong> for manual approval.</li>
+                            <li>Advertisements are non-refundable.</li>
+                            <li>Chargebacks or refunds will lead to the terminate of your ad campaign.</li>
+                            <li>Illegal or inappropriate banners will be denied.</li>
+                            <li>You may have a maximum of one (1) advertising campaign active at any time.</li>
+                            <li>All advertising campaigns last for 31 days.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col m5 s12">
+                <div class="card green lighten-2">
+                    <div class="card-content">
+                        <span class="card-title">
+                            Payment <small style="color:#666666">Your campaign will cost &dollar;{{campaign.cost}}</small>
+                        </span>
+                        <p>To create your campaign and proceed to PayPal, click the button below.</p>
+                        <p>Once paid we will manually approve your campaign banners, if they are not approved you will be refunded.</p>
+                        <p>By clicking continue you agree to the Terms and Conditions listed.</p>
+                    </div>
+                    <div class="card-action">
+                        <button class="btn waves-effect waves-light btn-flat light-blue lighten-2">Continue to PayPal</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+{{/load_error}}
