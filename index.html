@@ -31,33 +31,11 @@
         </h2>
         <hr>
         <div class="alert alert-danger">
-            <p><strong>We are deprecating our UUID, Name and History APIs on August 7th. <a href="/update-v4">Read more</a>.</strong></p>
+            <p><strong>We have deprecated UUID, Name and History APIs as of August 7th. <a href="/update-v4">Read more</a>.</strong></p>
         </div>
 
         <p class="hello">Hello</p>
         <p>This is mc-api.net, a collection of fast and free Minecraft related APIs.</p>
-
-        <p class="api-list">What is the UUID for a player?</p>
-        <div class="row">
-            <div class="col-md-7">
-                <div class="alert alert-danger" id="uuidtoname" style="display:none;">
-                </div>
-            </div>
-        </div>
-        <form method="post" data-form="uuidtoname">
-            <div class="row">
-                <div class="col-md-5">
-                    <div class="form-group">
-                        <label>Enter Username/UUID</label>
-                        <input name="query" required class="form-control" type="text">
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <label></label>
-                    <button type="submit" class="btn btn-info btn-block" style="margin-top:5px">Resolve</button>
-                </div>
-            </div>
-        </form>
 
         <p class="api-list">What APIs do we offer?</p>
         <p>There are a few APIs you can use:</p>
@@ -70,6 +48,7 @@
                 <td>Example</td>
             </tr>
 
+            <!-- 
             <tr>
                 <td>Username -> UUID</td>
                 <td>Convert a username into a UUID</td>
@@ -98,6 +77,8 @@
                 <td><code>JSON</code></td>
                 <td><a href="/example/history">/example/history</a></td>
             </tr>
+            -->
+
             <tr>
                 <td>Migration Status</td>
                 <td>Check if an account is migrated</td>
@@ -119,6 +100,13 @@
                 <td><code>PNG</code></td>
                 <td><a href="/example/favicon">/example/favicon</a></td>
             </tr>
+            <tr>
+                <td>Server Blacklist Check</td>
+                <td>Check if a server is blacklisted by Mojang</td>
+                <td><code>/v3/server/blacklist</code></td>
+                <td><code>JSON</code></td>
+                <td>Coming in v4!</td>
+            </tr>
         </table>
         <p>By default, endpoints which offer JSON responses will have documentation in JSON. To get a response in CSV (Plain Text) append your request with /csv</p>
         <p>Eg: <code>https://#HOST#/v3/server/info/hivemc.eu/csv</code> would give you information about <a target="_blank" href="http://hivemc.com">TheHive</a> in CSV format.</p>
@@ -131,6 +119,7 @@
             <li>Attempting to bypass any safeguards in place</li>
         </ul>
         <p>You acknowledge by using the service that all requests are logged and you may be denied access to the service at any time without prior notification or approval. However a reason may be provided.</p>
+        <p>MC-API is a free service provided without guarantee or warranty, while we work hard to maintain API stability we cannot guarantee it.</p>
 
         <p class="hello" id="supportus">Support Us</p>
         <p>MC-API receives millions of requests everyday across it's servers, keeping it online is quite expensive. If you want to support us that would be great! But if you don't, we understand.

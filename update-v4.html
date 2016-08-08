@@ -15,7 +15,7 @@
     <div class="content">
         <h2><i class="fa fa-code"></i> MC-API</h2>
         <hr>
-        <p><strong>tl;dr: We will be deprecating our UUID, Name and History APIs on August 7th, after this date the APIs will no longer be maintained and may no longer function at any time. Please update your applications to use an alternative, some are listed below. All of our other APIs will continue to function.</strong></p>
+        <p><strong>tl;dr: On August 7th 2016 we deprecated our UUID, Name and History APIs, they are no longer accessible. Please update your applications to use an alternative, some are listed below. All of our other APIs will continue to function.</strong></p>
         <p><em>Note:</em> This post had to be rewritten as the original was lost, the original went into much more detail and was easier to understand.</p>
         <p class="hello">An update about v4</p>
         <p>A couple of months ago we started to do a rewrite of the API (v4) which was largely prompted by the fact that most API requests were failing. The solution that was planned was to implement an API key system.</p>
@@ -29,12 +29,12 @@
         </ul>
         <p><em>Side note:</em> v4 is still planned, as a redesign of the main website and a backend rewrite. This will be released in the near future.</p>
         <p>The problem we have been facing recently is an excessive amount of requests being sent to some of our APIs, a large percentage of these are malicious and are intended to fail and cause our servers to be rate limited by Mojang.</p>
-        <p>At the time of writing, we are receiving in excess of 250 requests per second, 24 hours a day. Our infrastructure is relatively small, and the way Mojang rate limit is very restrictive. You can see an image from NewRelic which monitors our Nginx instances, <a href="http://i.imgur.com/sirKJsl.png">here</a>.</p>
+        <p>At the time of writing &dash; 30th July 2016 &dash; we are receiving in excess of 250 requests per second, 24 hours a day. Our infrastructure is relatively small, and the way Mojang rate limit is very restrictive. You can see an image from NewRelic which monitors our Nginx instances, <a href="http://i.imgur.com/sirKJsl.png">here</a>.</p>
         <p>Most of the Mojang API rate limits based on IP and allows 600 requests per 10 minutes (about 1 per second) the fact that we are receiving more than 250 per second, means we have no chance of responding correctly to even a small portion.</p>
         <p>MC-API has always been funded by donations and any excess funded personally by us, the developers. While donations are a rare occurance, we are extremely grateful for all contributions.</p>
         <p>The fact that donations are so rare means that it is difficult to add more capacity and servers. Generally servers come with 1 IP address, which means we would need over 250 servers to respond to each query.</p>
         <p class="hello">A sad step we are taking</p>
-        <p>Sadly, we will be deprecating our UUID, Name and History APIs on <strong>August 7th</strong>. This means that after this date we will not be maintaining or updating those APIs and we may terminate them at any time. We highly recommend updating your applications as soon as possible, some alternatives are listed below.</p>
+        <p>Sadly, we will have deprecated our UUID, Name and History APIs on <strong>August 7th</strong>. This meant that these APIs are no longer accessible, we gave 1 week notice before anything was done, to give users a chance to update their applications. We highly recommend updating your applications, alternatives are listed below.</p>
         <p>We are doing this for a number of reasons:</p>
         <ul>
             <li>The service is becoming hard to sustain, and expensive to add more capacity</li>
@@ -43,7 +43,7 @@
         </ul>
         <p>As mentioned above, a lot of requests are intended to fail, but still end up querying mojangs API, this means our servers are likely to be rate limited, meaning legitimate requests will also fail.</p>
         <p>This is a classic case of the minority ruining it for the majority.</p>
-        <p>While we may add these APIs in the future, it is very unlikely within 2016.</p>
+        <p>While we may re-add these APIs in the future, it is very unlikely within 2016.</p>
         <p>We apologise for the inconveniencen this will cause and feel we have let you down.</p>
         <hr>
         <p class="hello">Is there an alternative?</p>
@@ -58,7 +58,7 @@
         <p>Therefore MC-API is paid for personally by us, the developers. It's quite expensive.</p>
         <p>We have evaluated adding advertising, and have concluded this would not be a solution to this particular problem.</p>
         <p class="hello">When is this happening?</p>
-        <p>On <strong>August 7th</strong>, these APIs will be deprecated and no longer maintained. Please update your applications before that date!</p>
+        <p>It has already happened! On <strong>August 7th</strong>, these APIs were deprecated and are no longer accessible. Please update your applications using an alternative, some are listed above.</p>
         <p class="hello">Is there no way to block the malicious requests?</p>
         <p>Due to the nature of our API, open, anonymous and free, things like this are bound to happen.</p>
         <p>It is also extremely difficult to detect and block malicious requests, we have implemented some measures, but they are not long term.</p>
