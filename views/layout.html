@@ -7,19 +7,24 @@
             <a href="/" class="brand-logo">MC-API</a>
 
             <ul class="right">
+                {{#mcapi.accounts}}
                 <li><a href="/manage"><span class="icon icon-account-circle"></span> Account</a></li>
                 {{#user.authed}}
                 <li><a href="/logout">Logout</a></li>
                 {{/user.authed}}
-                <!-- <li><a class="dropdown-button" data-activates="change-server-dropdown"><span class="flag-icon flag-icon-{{mcapi.flag}}"></span> Change Server &#9660;</a></li> -->
+                {{/mcapi.accounts}}
+                <li><a class="dropdown-button" data-activates="change-server-dropdown"><span class="flag-icon flag-icon-{{mcapi.flag}}"></span> Change Server &#9660;</a></li>
             </ul>
-            <!--<ul id="change-server-dropdown" class="dropdown-content">
+            <ul id="change-server-dropdown" class="dropdown-content">
                 <li><a class="disabled" disabled>Change Server</a></li>
                 <li class="divider"></li>
                 {{#mcapi.region_list}}
-                <li><a href="{{link}}" target="_blank"><span class="flag-icon flag-icon-{{flag}}"></span> {{name}}</a></li>
+                <li><a href="{{link}}" target="_blank" rel="noopener"><span class="flag-icon flag-icon-{{flag}}"></span> {{name}}</a></li>
                 {{/mcapi.region_list}}
-            </ul>-->
+                {{#mcapi.geo_link.enable}}
+                <li><a href="{{mcapi.geo_link.url}}" target="_blank" rel="noopener">Auto Detect <kbd>(BETA)</kbd></a></li>
+                {{/mcapi.geo_link.enable}}
+            </ul>
         </div>
     </nav>
     <div class="container">
@@ -27,7 +32,7 @@
             {{#adverts.top}}
             <div class="campaign-top">
                 <img src="/campaign/{{_id}}/track.gif">
-                <a href="/campaign/{{_id}}/click" target="_blank"><img src="/campaign/{{_id}}/banner"></a>
+                <a href="/campaign/{{_id}}/click" target="_blank" rel="noopener"><img src="/campaign/{{_id}}/banner"></a>
             </div>
             {{/adverts.top}}
             {{^adverts.top}}
@@ -48,7 +53,7 @@
             {{#adverts.bottom}}
             <div class="campaign-top">
                 <img src="/campaign/{{_id}}/track.gif">
-                <a href="/campaign/{{_id}}/click" target="_blank"><img src="/campaign/{{_id}}/banner"></a>
+                <a href="/campaign/{{_id}}/click" target="_blank" rel="noopener"><img src="/campaign/{{_id}}/banner"></a>
             </div>
             {{/adverts.bottom}}
             {{^adverts.bottom}}

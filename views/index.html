@@ -3,17 +3,10 @@
 <h4 id="usage">Usage</h4>
 <p>Our APIs are simple to use, just follow the instructions below:</p>
 <ol>
-    <li>Find the API you want to use.</li>
-    <li>Register for an API key (<a href="/why_api_key">why do I need this?</a>)</li>
-    <li>Send your request with API key (<a href="/sandbox">Show me an example!</a>)</li>
+    <li>Find the API you want to use</li>
+    <li>Send your request (<a href="/sandbox">Show me an example!</a>)</li>
+    <li>We highly recommend <a href="/caching">caching</a> the response.</li>
 </ol>
-{{#mcapi.soft_rate_limit}}
-<p><strong>Can I use the API without an API key?</strong></p>
-<p>Yes, temporarily we are allowing limited access without an API key. This is to allow people to transition and update their applications to use an API key.</p>
-{{/mcapi.soft_rate_limit}}
-<p><strong>Do all APIs require an API key?</strong></p>
-<p>No, the server ping and server favicon APIs do not require an API key.</p>
-<p>Also if we have something cached we will not check or require an API key to retrieve it.</p>
 <h4 id="apis">What APIs are available?</h4>
 <table class="striped responsive-table highlight">
     <thead>
@@ -22,7 +15,6 @@
             <td>Description</td>
             <td>Documentation</td>
             <td>Response Types</td>
-            <td style="text-align: center">Requires API key?</td>
         </tr>
     </thead>
     <tbody>
@@ -32,7 +24,6 @@
             <td>{{description}}</td>
             <td><a href="/docs/{{docs}}">/docs/{{docs}}</a></td>
             <td>{{{response_type_desc}}}</td>
-            <td style="text-align: center">{{#api_key}}Yes{{/api_key}}{{^api_key}}No{{/api_key}}</td>
         </tr>
         {{/mcapi.api_list}}
     </tbody>

@@ -16,15 +16,11 @@
         </span>
         <h5>Your API Key</h5>
         <br>
-        <div class="row">
-            <div class="col s12 m8">
-                <div class="card-panel grey lighten-3">
-                    <p style="margin-top:0">{{deviceString}} below to reveal API key</p>
-                    <div class="api-key-box blur" data-clipboard-target=".api-key-text">
-                        <span class="api-key-text">{{user.api_key}}</span>
-                        {{! <span class="api-key-copy text-muted right">Click to copy!</span> }}
-                    </div>
-                </div>
+        <div class="card-panel deep-purple accent-2">
+            <p style="margin-top:0;text-align:center;font-weight:bold">{{deviceString}} below to reveal API key</p>
+            <div class="api-key-box blur" data-clipboard-target=".api-key-text">
+                <span class="api-key-text">{{user.api_key}}</span>
+                {{! <span class="api-key-copy text-muted right">Click to copy!</span> }}
             </div>
         </div>
 
@@ -34,9 +30,9 @@
                 <tbody id="api-regen-body">
                     {{#changeHistory}}
                     <tr>
-                        <td><strong>Re-generated API key to</strong><br>&nbsp;<span class="blur text-muted">{{key}}</span></td>
+                        <td><strong>Re-generated API key to</strong><br>&nbsp;<span class="blur-3px text-muted">{{key}}</span></td>
                         <td><strong>{{geo.country}}</strong><br><small>{{browser}} &bull; {{os}}</small></td>
-                        <td><abbr data-time="{{time_source}}" title="{{time_date}}">{{time}}</abbr></td>
+                        <td><abbr data-time="{{time_source}}" data-tooltip="{{time_date}}" class="simple-tip" data-position="top" title="{{time_date}}">{{time}}</abbr></td>
                     </tr>
                     {{/changeHistory}}
                 </tbody>
@@ -44,14 +40,13 @@
         </div>
     </div>
     <div class="col m6 s12">
-        <h5>API Key Usage <small id="api-key-timeframe" data-tf="24h">Last 24 Hours</small></h5>{{!  TODO make it so people can select a different timeframe }}
+        <h5>API Key Usage <small id="api-key-timeframe" data-tf="1d">Past Day</small></h5>{{!  TODO make it so people can select a different timeframe }}
         <br>
         <table class="bordered striped">
             <thead>
                 <tr>
                     <td>Route</td>
-                    <td>Uses</td>
-                    <td>Location</td>
+                    <td>Uses &amp; Location</td>
                 </tr>
             </thead>
             <tbody id="api-usage-body"></tbody>

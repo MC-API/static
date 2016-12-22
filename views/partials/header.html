@@ -10,11 +10,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <meta name="description" content="A collection of Minecraft related API's">
-    <meta name="keywords" content="uuid,minecraft,mojang,api,mcapi,mc-api,minecraft-api,minecraftapi,uuidapi,imnjb,bukkit,spigot,spigotmc,username">
+    <meta name="keywords" content="minecraft,mojang,api,mcapi,mc-api,minecraft-api,minecraftapi,bukkit,spigot,spigotmc">
 
     <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/flags.min.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/application.css">
+    {{#custom_styles}}
+    <link rel="stylesheet" type="text/css" href="{{.}}">
+    {{/custom_styles}}
     <link rel="shortcut icon" href="/assets/favicon.ico"/>
 
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>

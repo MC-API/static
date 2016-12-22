@@ -1,0 +1,62 @@
+<h3>Performance statistics</h3>
+<div class="row">
+    <div class="col m4 s12">
+        <h5>Today <small>{{today_date}}</small></h5>
+        <p><strong>Average response time:</strong> <span id="today-ms-avg" style="color:#bfbfbf">calculating&hellip;</span></p>
+        <p><strong>Total requests:</strong> <span id="today-total" style="color:#bfbfbf">calculating&hellip;</span></p>
+        <p><strong>Error rate:</strong> <span id="today-error-rate" style="color:#bfbfbf">calculating&hellip;</span></p>
+        <h5 style="border-top: 1px solid #d6d6d6; padding-top: 8px">Month <small>{{month}} {{year}}</small></h5>
+        <p><strong>Average response time:</strong> <span id="month-ms-avg" style="color:#bfbfbf">calculating&hellip;</span></p>
+        <p><strong>Total requests:</strong> <span id="month-total" style="color:#bfbfbf">calculating&hellip;</span></p>
+        <p><strong>Error rate:</strong> <span id="month-error-rate" style="color:#bfbfbf">calculating&hellip;</span></p>
+    </div>
+    <div class="col m8 s12">
+        <h5>Popularity by country</h5>
+        <div id="chart1"></div>
+    </div>
+</div>
+<p class="text-muted">Data is updated every {{update_period}} minutes &middot; Last updated: <span class="last-updated"></span></p>
+<script type="text/javascript" defer>
+    google.charts.load('upcoming', {'packages':['geochart']});
+    google.charts.setOnLoadCallback(loadPerformance);
+
+    function loadPerformance() {
+        $.ajax({
+            url: '/performance',
+            type: 'post',
+            data: {
+                _csrf: $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function(resp) {
+                var monthData = resp[resp.currentDate.year][resp.currentDate.month];
+
+                $('#today-ms-avg').css('color', '').text(monthData[resp.currentDate.day].performance.avg_response + 'ms');
+                $('#today-total').css('color', '').text(monthData[resp.currentDate.day].performance.total);
+                $('#today-error-rate').css('color', '').text(monthData[resp.currentDate.day].performance.error_rate + '%');
+
+                $('#month-ms-avg').css('color', '').text(monthData.performance.avg_response + 'ms');
+                $('#month-total').css('color', '').text(monthData.performance.total);
+                $('#month-error-rate').css('color', '').text(monthData.performance.error_rate + '%');
+
+                var lastUpdate = new Date(resp.lastUpdate);
+                var hour = lastUpdate.getHours();
+                var min = lastUpdate.getMinutes();
+                if (min < 10) {
+                    min = "0" + min;
+                }
+                var ampm = hour < 12 ? "am" : "pm";
+                hour = hour >= 12 ? hour-12 : hour;
+
+                $('.last-updated').text(hour + ':' + min + ' ' + ampm);
+
+                var data = google.visualization.arrayToDataTable(monthData.countries);
+
+                var options = {};
+
+                var chart = new google.visualization.GeoChart(document.getElementById('chart1'));
+
+                chart.draw(data, options);
+            }
+        });
+    }
+</script>

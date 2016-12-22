@@ -1,90 +1,73 @@
 $(document).ready(function() {
-    $(".dropdown-button").dropdown();
+    $('.simple-tip').tooltip({position: 'top', delay: 25})
+    $('.dropdown-button').dropdown();
 
-    if($('.api-key-box').length) {
-        /*
-         * TODO: Add click-to-copy
-         */
-
-        /*
-            $('.api-key-box').on('mouseover', function(e) {
-                $('.api-key-copy').stop().fadeIn(350);
-            });
-            $('.api-key-box').on('mouseleave', function(e) {
-                $('.api-key-copy').stop().fadeOut(150);
-            });
-        */
-
-        $('.api-key-regenerate').on('click', function(e) {
+    if($('.sandbox-container').length) {
+        $('button[data-sb-action]').on('click', function(e) {
             e.preventDefault();
-            $('#manage-error').stop().slideUp(200);
 
-            $.ajax({
-                url: '/manage/regenerate-apikey',
-                type: 'post',
-                success: function(resp) {
-                    if(resp.status == 200) {
-                        $('.api-key-text').text(resp.key);
+            if(!$('.sandbox-container .step1').hasAttr('complete')) {
+                var action = $(this).attr('data-sb-action');
+                
+                $('.sandbox-container .step1').attr('complete', 'true');
 
-                        if(!$('.api-regen-history').length) {
-                            // TODO Add table
-                        }
-
-                        $('#api-regen-history-title').fadeIn(200)
-                        $('<tr><td><strong>Re-generated API key to</strong><br>&nbsp;<span class="blur text-muted">' + resp.key + '</span></td><td><strong>' + resp.geo.country + '</strong><br><small>' + resp.browser + ' &bull; ' + resp.os + '</small></td><td><abbr data-time="' + resp.moment_source + '"></abbr></td></tr>').hide().prependTo('#api-regen-body').fadeIn(500);
-                        if($('#api-regen-body tr').length > 20) {
-                            $('#api-regen-body tr:last').remove();
-                        }
-                    } else {
-                        $('#manage-error').stop().html('<strong>Error:</strong> ' + resp.error).slideDown(450);
+                $('button[data-sb-action!="' + action + '"]').stop().fadeOut(700, function() {
+                    if(action == 'ping' || action == 'favicon' || action == 'blacklist') {
+                        $('.sb-param[data-param="server"]').show();
                     }
 
-                    $('abbr[data-time]').each(function(i, obj) {
-                        var now = moment(new Date($(obj).attr('data-time')));
-                        $(obj).text(now.fromNow()).attr('title', now.format('MMMM Do YYYY, h:mm:ss a'));
-                    });
-                },
-                error: function(e1, e2, e3) {
-                    $('#manage-error').stop().html('<strong>Error:</strong> An error occured while processing that request!').slideDown(450);                
-                }
-            })
+                    $('.sandbox-container .step2').stop().slideDown(300);
+                });
+            }
 
             return false;
-        })
+        });
+
+        $('.sandbox-container .step2 .sb-param').on('keyup', function() {
+            onSandboxParamType($(this));
+        }).on('paste', function() {
+            onSandboxParamType($(this));
+        }).on('focus', function() {
+            onSandboxParamType($(this));
+        }).on('blur', function() {
+            onSandboxParamType($(this));
+        });
+
+        function onSandboxParamType(e) {
+            if($('.sandbox-container .step1').hasAttr('complete'))
+            var text = e.text();
+
+            if(text && text.length > 1) {
+                // update code snippet
+            } else {
+                // reset code snippet
+            }
+        }
     }
 
-    if($('#api-usage-body').length) {
-        function getAPIHistory() {
+    if($('button.docs-btn[data-ajax]').length && $('.response#docs-ajax-response').length) {
+        $('button.docs-btn[data-ajax').on('click', function(e) {
+            var ele = $(this);
+            e.preventDefault();
+
+            $('#docs-ajax-response').text('Please wait...');
+
             $.ajax({
-                url: '/manage/history',
-                type: 'post',
-                data: {
-                    timeframe: $('#api-key-timeframe').attr('data-tf')
-                },
-                success: function(resp) {
-                    if($('#api-history-load').is(':visible')) {
-                        $('#api-history-load').fadeOut(200, function() {
-                            $('#api-usage-body').hide().html(resp).fadeIn(300);
-                        });
-                    } else {
-                        $('#api-usage-body').html(resp);
-                    }
+                url: '/v3/' + ele.attr('data-ajax') + '/' + ele.attr('data-ajax-arg'),
+                type: 'get',
+                async: true,
+                success: function(data, textStatus, obj) {
+                    var resp = typeof data == 'object' ? JSON.stringify(data, null, 4) : '<img src="/v3/' + ele.attr('data-ajax') + '/' + ele.attr('data-ajax-arg') +'">';
+                    $('.response#docs-ajax-response').html('<kbd class="response-heading">Headers</kbd><p>' + obj.getAllResponseHeaders() + '</p><kbd class="response-heading">Response</kbd><p>' + resp + '</p>');
+                    $('html, body').animate({
+                        scrollTop: $('.response#docs-ajax-response').offset().top - 130
+                    }, 300);
                 },
                 error: function(e1, e2, e3) {
-                    $('#api-usage-body').hide();
-
-                    if($('#api-history-load').is(':visible')) {
-                        $('#api-history-load').fadeOut(200, function() {
-                            $('#api-history-load').html(e2 == 400 ? ('<strong>Error: </strong> ' + e3) : 'An error occured').fadeIn(300);;
-                        });
-                    } else {
-                        $('#api-history-load').html(e2 == 400 ? ('<strong>Error: </strong> ' + e3) : 'An error occured');
-                    }
+                    $('.response#docs-ajax-response').text('An unexpected error occured, please try again later!');
                 }
-            });
-        }
-
-        getAPIHistory();
+            })
+        });
     }
 
     if($('form[data-action="new_campaign"]').length) {
@@ -119,3 +102,7 @@ function isImgurLink(str) {
     var match = str.toLowerCase().match('((https:\/\/)|(http:\/\/)*)((i.)|(m.)|(www.))*(imgur.com)[\/].+');
     return !match ? false : match.length > 0;
 }
+
+$.fn.hasAttr = function(name) {  
+   return this.attr(name) !== undefined;
+};

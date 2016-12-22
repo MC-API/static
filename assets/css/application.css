@@ -113,6 +113,19 @@ ul.inline li {
   list-style-position: inside;
 }
 
+ul.inline-disc li {
+  list-style-type: disc;
+  list-style-position: inside;
+}
+
+ul.inline-disc li kbd {
+  background-color: #8bc34a;
+  color: white;
+  padding: .1em .2em;
+  margin-right: 3px;
+  border-radius: 2px;
+}
+
 footer.page-footer .footer-copyright {
   background-color: inherit;
   color:inherit;
@@ -167,7 +180,17 @@ footer.page-footer {
   -o-transition: .1s -o-filter linear;
 }
 
-.blur:hover {
+.blur-3px {
+  filter: blur(3px);
+  -webkit-filter: blur(3px);
+  transition: .1s filter linear;
+  -webkit-transition: .1s -webkit-filter linear;
+  -moz-transition: .1s -moz-filter linear;
+  -ms-transition: .1s -ms-filter linear;
+  -o-transition: .1s -o-filter linear;
+}
+
+.blur:hover, .blur-3px:hover {
   filter: none;
   -webkit-filter: none;
 }
@@ -181,7 +204,8 @@ footer.page-footer {
 }*/
 
 .api-key-box {
-  display: inline;
+  /*display: inline;*/
+  text-align: center;
 }
 
 .api-key-box:hover {
@@ -189,6 +213,22 @@ footer.page-footer {
 }
 
 .api-key-copy {
+  display: none;
+}
+
+.sandbox-container .btn {
+  margin-bottom: 4px;
+}
+
+.sandbox-container .sb-step {
+  display: none;
+}
+
+.sandbox-container .step1 {
+  display: inherit;
+}
+
+.sandbox-container .sb-param {
   display: none;
 }
 
@@ -201,6 +241,14 @@ footer.page-footer {
 
 .history-progress .indeterminate {
   background-color: #3081FE;
+}
+
+td code.api-history-route {
+  padding: 2px 4px;
+  font-size: 90%;
+  color: #c7254e;
+  background-color: #f9f2f4;
+  border-radius: 4px;
 }
 
 /* Created by icomoon so we don't need ALL of fontawesome */
@@ -262,4 +310,52 @@ footer.page-footer {
 }
 .icon-paypal:before {
   content: "\e906";
+}
+
+pre.syntax-request-format {
+  padding-left: .6em;
+  padding-top: .5em;
+  padding-bottom: .5em;
+  background-color: #cddaee;
+  border-radius: 3px;
+  border: 1px solid #abc6ee;
+  color: black;
+}
+
+pre.syntax-request-format kbd.method {
+  background-color: #284e89;
+  color: white;
+  padding: .2em .3em;
+  margin-right: 8px;
+  border-radius: 4px;
+}
+
+pre.syntax-request-format kbd.response-heading {
+  background-color: #c62828;
+  color: white;
+  padding: .2em .3em;
+  margin-right: 8px;
+  border-radius: 1px;
+}
+
+pre.syntax-request-format.response {
+  background-color: #cde3ee;
+  border: 1px solid #abdbee;
+  color: black;
+}
+
+pre.syntax-request-format.response p {
+  margin-top: 3px;
+}
+
+#docs-ajax-response {
+  margin-top: 7px;
+}
+
+button.btn.docs-btn[data-ajax] {
+  margin-top: -5px;
+}
+
+nav ul a[data-activates="change-server-dropdown"] {
+  padding: 0 20px;
 }
