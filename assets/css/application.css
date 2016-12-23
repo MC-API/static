@@ -251,6 +251,10 @@ td code.api-history-route {
   border-radius: 4px;
 }
 
+.code-snippet pre code:empty {
+  display: hidden;
+}
+
 /* Created by icomoon so we don't need ALL of fontawesome */
 @font-face {
   font-family: 'mcapi';

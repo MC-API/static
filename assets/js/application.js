@@ -10,37 +10,98 @@ $(document).ready(function() {
                 var action = $(this).attr('data-sb-action');
                 
                 $('.sandbox-container .step1').attr('complete', 'true');
+                $('.sandbox-container .code-snippet').attr('data-type', action);
 
-                $('button[data-sb-action!="' + action + '"]').stop().fadeOut(700, function() {
+                $('button[data-sb-action!="' + action + '"]').stop().fadeOut(400, function() {
                     if(action == 'ping' || action == 'favicon' || action == 'blacklist') {
                         $('.sb-param[data-param="server"]').show();
                     }
 
-                    $('.sandbox-container .step2').stop().slideDown(300);
+                    $('.sandbox-container .step2').stop().slideDown(200);
                 });
             }
 
             return false;
         });
 
-        $('.sandbox-container .step2 .sb-param').on('keyup', function() {
-            onSandboxParamType($(this));
+        var sandboxTyper;
+        var sandboxTypeDelay = 250;
+
+        $('.sandbox-container .step2 .sb-param input').on('keyup', function() {
+            var self = $(this);
+            clearTimeout(sandboxTyper);
+
+            sandboxTyper = setTimeout(function() {
+                onSandboxParamType(self);
+            }, sandboxTypeDelay);
         }).on('paste', function() {
-            onSandboxParamType($(this));
-        }).on('focus', function() {
-            onSandboxParamType($(this));
-        }).on('blur', function() {
-            onSandboxParamType($(this));
+            var self = $(this);
+            clearTimeout(sandboxTyper);
+
+            sandboxTyper = setTimeout(function() {
+                onSandboxParamType(self);
+            }, sandboxTypeDelay);
         });
 
         function onSandboxParamType(e) {
-            if($('.sandbox-container .step1').hasAttr('complete'))
-            var text = e.text();
+            if($('.sandbox-container .step1').hasAttr('complete')) {
+                var text = e.val();
+                console.log(e.val());
 
-            if(text && text.length > 1) {
-                // update code snippet
+                if(text && text.length > 1) {
+                    // update code snippet
+                    updateSnippet(text, $('.code-snippet').attr('current-lang'), 'type');
+                } else {
+                    // reset code snippet
+                }
+            }
+        }
+
+        $('li a[data-action="langChange"][data-lang]').on('click', function(e) {            
+            $('.sandbox-container .snippet .card-title#language').html($(this).text());
+
+            if($('.sandbox-container .step1').hasAttr('complete')) {
+                updateSnippet($('.sandbox-container .step2 .sb-param input').val(), $(this).attr('data-lang'), 'langChange');
             } else {
-                // reset code snippet
+                $('.code-snippet').attr('current-lang', $(this).attr('data-lang'));
+            }
+        });
+
+        function updateSnippet(text, lang, trigger) {
+            if($('.sandbox-container .step1').hasAttr('complete')) {
+                $('.code-snippet').attr('current-lang', lang);
+
+                $.ajax({
+                    type: 'post',
+                    url: '/sandbox/syntax',
+                    data: {
+                        ip: text,
+                        type: $('.sandbox-container .code-snippet').attr('data-type'),
+                        language: lang,
+                        trigger: trigger
+                    },
+                    async: true,
+                    success: function(resp) {
+                        $('.sandbox-error').stop().slideUp(350);
+                        $('.code-snippet .code-info').slideUp(250);
+                        $('.code-snippet pre code').text(resp);
+                        $('pre code').each(function(i, block) {
+                            hljs.highlightBlock(block);
+                        });
+                    },
+                    error: function(e1, e2, e3) {
+                        if(e1.statusCode == 429) {
+                            // too many
+                            $('.sandbox-error .error-text').html('You\'re typing too quick for us! Please slow down and try again.');
+                        } else if(e1.statusCode == 400) {
+                            $('.sandbox-error .error-text').html('An internal error occured while rendering your sandbox!');
+                        } else {
+                            $('.sandbox-error .error-text').html('Something went wrong while rendering your sandbox!');
+                        }
+
+                        $('.sandbox-error').stop().slideDown(250);
+                    }
+                });
             }
         }
     }
