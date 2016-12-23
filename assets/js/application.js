@@ -115,7 +115,7 @@ $(document).ready(function() {
 
             $.ajax({
                 url: '/v3/' + ele.attr('data-ajax') + '/' + ele.attr('data-ajax-arg'),
-                type: 'get',
+                type: ele.attr('data-ajax') == 'server/favicon' ? 'head' : 'get',
                 async: true,
                 success: function(data, textStatus, obj) {
                     var resp = typeof data == 'object' ? JSON.stringify(data, null, 4) : '<img src="/v3/' + ele.attr('data-ajax') + '/' + ele.attr('data-ajax-arg') +'">';
