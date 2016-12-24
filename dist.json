@@ -5,6 +5,8 @@
             "/assets/fonts/*",
             "*.png",
             "favicon.ico"
-        ]
+        ],
+        "purge" : [],
+        "distExemptPurge" : []
     }
 }
