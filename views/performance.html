@@ -51,7 +51,9 @@
 
                 var data = google.visualization.arrayToDataTable(monthData.countries);
 
-                var options = {};
+                var options = {
+                    colorAxis: {values: [0, 100, 500, 1500, 100000], colors: ['#BCDEF5', '#88C6EF', '#61B2E8', '#3F9AD6', '#1565C0']}
+                };
 
                 var chart = new google.visualization.GeoChart(document.getElementById('chart1'));
 
