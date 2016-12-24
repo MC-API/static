@@ -13,8 +13,8 @@
     <meta name="keywords" content="minecraft,mojang,api,mcapi,mc-api,minecraft-api,minecraftapi,bukkit,spigot,spigotmc">
 
     <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
-    <link rel="stylesheet" type="text/css" href="/assets/css/flags.min.css">
-    <link rel="stylesheet" type="text/css" href="/assets/css/application.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/flags.min.css?{{cacheBuster}}">
+    <link rel="stylesheet" type="text/css" href="/assets/css/application.css?{{cacheBuster}}">
     {{#custom_styles}}
     <link rel="stylesheet" type="text/css" href="{{.}}">
     {{/custom_styles}}
@@ -25,7 +25,7 @@
     {{#custom_scripts}}
     <script type="text/javascript" src="{{.}}"></script>
     {{/custom_scripts}}
-    <script type="text/javascript" src="/assets/js/application.js"></script>
+    <script type="text/javascript" src="/assets/js/application.js?{{cacheBuster}}"></script>
 
     <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
     <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
