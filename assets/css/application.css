@@ -101,11 +101,11 @@ h1 small, h2 small, h3 small, h4 small, h5 small {
 }
 
 .label-cost-green {
-  background-color: #5cb85c;  
+  background-color: #5cb85c;
 }
 
 .label-cost-blue {
-  background-color: #41C5EC;  
+  background-color: #41C5EC;
 }
 
 ul.inline li {
@@ -168,6 +168,7 @@ footer.page-footer {
 
 .page-footer a {
   color: #A6A6A6;
+  cursor: pointer;
 }
 
 .blur {
