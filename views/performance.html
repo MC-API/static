@@ -31,11 +31,11 @@
                 var monthData = resp[resp.currentDate.year][resp.currentDate.month];
 
                 $('#today-ms-avg').css('color', '').text(monthData[resp.currentDate.day].performance.avg_response + 'ms');
-                $('#today-total').css('color', '').text(monthData[resp.currentDate.day].performance.total);
+                $('#today-total').css('color', '').text(parseInt(monthData[resp.currentDate.day].performance.total).toLocaleString());
                 $('#today-error-rate').css('color', '').text(monthData[resp.currentDate.day].performance.error_rate + '%');
 
                 $('#month-ms-avg').css('color', '').text(monthData.performance.avg_response + 'ms');
-                $('#month-total').css('color', '').text(monthData.performance.total);
+                $('#month-total').css('color', '').text(parseInt(monthData.performance.total).toLocaleString());
                 $('#month-error-rate').css('color', '').text(monthData.performance.error_rate + '%');
 
                 var lastUpdate = new Date(resp.lastUpdate);
