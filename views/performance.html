@@ -46,6 +46,7 @@
                 }
                 var ampm = hour < 12 ? "am" : "pm";
                 hour = hour >= 12 ? hour-12 : hour;
+                hour = hour <= 0 ? 12 : hour;
 
                 $('.last-updated').text(hour + ':' + min + ' ' + ampm);
 
