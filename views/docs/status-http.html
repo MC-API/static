@@ -1,0 +1,23 @@
+<h3>Documentation <small>Server Status</small></h3>
+<p>This is a simple API which provides the status of a server in CSV format (plain text) &dash; it also sets the HTTP status code of the response based upon the server status.</p>
+<p>A request could look something like this to find information about <a href="https://hypixel.net" target="_blank" rel="noopener">Hypixel</a>:</p>
+<pre class="syntax-request-format"><kbd class="method">GET</kbd>https://{{mcapi.region}}.mc-api.net/v3/server/status-http/mc.hypixel.net</pre>
+
+<span class="right"><button class="btn docs-btn teal darken-2" data-ajax="server/status-http" data-ajax-arg="mc.hypixel.net">Try Me!</button></span>
+<p>To try this API, click the button on the right:</p>
+
+<pre class="syntax-request-format response" id="docs-ajax-response" data-ajax="server/status-http"> JSON response will be shown here</pre>
+
+<h4>Response Explained</h4>
+<p>If the server is online the <strong>HTTP status code</strong> will be <code class="pop green">200 OK</code></p>
+<p>If the server is offline the <strong>HTTP status code</strong> will be <code class="pop red">404 Not Found</code></p>
+<div class="row">
+    <div class="col s12 m6">
+        <p>The response body is a CSV string, in the following format:</p>
+        <pre class="syntax-request-format">status,players,max-players,source</pre>
+    </div>
+    <div class="col s12 m6">
+        <p>For example, a server with 50 out of 100 players online:</p>
+        <pre class="syntax-request-format">true,50,100,ping</pre>
+    </div>
+</div>

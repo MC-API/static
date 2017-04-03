@@ -118,7 +118,8 @@ $(document).ready(function() {
                 type: ele.attr('data-ajax') == 'server/favicon' ? 'head' : 'get',
                 async: true,
                 success: function(data, textStatus, obj) {
-                    var resp = typeof data == 'object' ? JSON.stringify(data, null, 4) : '<img src="/v3/' + ele.attr('data-ajax') + '/' + ele.attr('data-ajax-arg') +'">';
+                    console.log(data, obj, typeof data);
+                    var resp = typeof data == 'object' ? JSON.stringify(data, null, 4) : (typeof data == 'string' ? data : '<img src="/v3/' + ele.attr('data-ajax') + '/' + ele.attr('data-ajax-arg') +'">');
                     $('.response#docs-ajax-response').html('<kbd class="response-heading">Headers</kbd><p>' + obj.getAllResponseHeaders() + '</p><kbd class="response-heading">Response</kbd><p>' + resp + '</p>');
                     $('html, body').animate({
                         scrollTop: $('.response#docs-ajax-response').offset().top - 130

@@ -353,6 +353,14 @@ pre.syntax-request-format.response p {
   margin-top: 3px;
 }
 
+code.pop {
+  padding: 3px 4px;
+  border-radius: 1px;
+  margin-left: 3px;
+  background-color: #cddaee;
+  color: white;
+}
+
 #docs-ajax-response {
   margin-top: 7px;
 }
