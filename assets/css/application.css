@@ -378,3 +378,14 @@ nav ul a[data-activates="change-server-dropdown"] {
     left: 30%;
   }
 }
+
+.tabs .tab a {
+  color: #2d7af1;
+}
+.tabs .tab a:hover {
+  color: #9cbdf1;
+}
+
+.tabs .indicator {
+  background-color: #498cf5;
+}
