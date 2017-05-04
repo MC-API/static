@@ -1,21 +1,37 @@
 <h3>Performance statistics</h3>
+<div class="colors"></div>
 <div class="row">
-    <div class="col m4 s12">
-        <h5>Today <small>{{today_date}}</small></h5>
-        <p><strong>Average response time:</strong> <span id="today-ms-avg" style="color:#bfbfbf">calculating&hellip;</span></p>
-        <p><strong>Total requests:</strong> <span id="today-total" style="color:#bfbfbf">calculating&hellip;</span></p>
-        <p><strong>Error rate:</strong> <span id="today-error-rate" style="color:#bfbfbf">calculating&hellip;</span></p>
-        <h5 style="border-top: 1px solid #d6d6d6; padding-top: 8px">Month <small>{{month}} {{year}}</small></h5>
-        <p><strong>Average response time:</strong> <span id="month-ms-avg" style="color:#bfbfbf">calculating&hellip;</span></p>
-        <p><strong>Total requests:</strong> <span id="month-total" style="color:#bfbfbf">calculating&hellip;</span></p>
-        <p><strong>Error rate:</strong> <span id="month-error-rate" style="color:#bfbfbf">calculating&hellip;</span></p>
+    <div class="col s12">
+        <ul class="tabs">
+            <li class="tab col s3"><a href="#stats">This Month ({{month}} {{year}})</a></li>
+            <li class="tab col s3"><a href="#historical">Historical Data</a></li>
+        </ul>
     </div>
-    <div class="col m8 s12">
-        <h5>Popularity by country</h5>
-        <div id="chart1"></div>
+    <div id="stats" class="col s12">
+        <br>
+        <div class="row">
+            <div class="col m4 s12">
+                <h5>Today <small>{{today_date}}</small></h5>
+                <p><strong>Average response time:</strong> <span id="today-ms-avg" style="color:#bfbfbf">calculating&hellip;</span></p>
+                <p><strong>Total requests:</strong> <span id="today-total" style="color:#bfbfbf">calculating&hellip;</span></p>
+                <p><strong>Error rate:</strong> <span id="today-error-rate" style="color:#bfbfbf">calculating&hellip;</span></p>
+                <h5 style="border-top: 1px solid #d6d6d6; padding-top: 8px">Month <small>{{month}} {{year}}</small></h5>
+                <p><strong>Average response time:</strong> <span id="month-ms-avg" style="color:#bfbfbf">calculating&hellip;</span></p>
+                <p><strong>Total requests:</strong> <span id="month-total" style="color:#bfbfbf">calculating&hellip;</span></p>
+                <p><strong>Error rate:</strong> <span id="month-error-rate" style="color:#bfbfbf">calculating&hellip;</span></p>
+            </div>
+            <div class="col m8 s12">
+                <h5>Popularity by country</h5>
+                <div id="chart1"></div>
+            </div>
+        </div>
+        <p class="text-muted">Data is updated every {{update_period}} minutes &middot; Last updated: <span class="last-updated"></span></p>
+    </div>
+    <div id="historical" class="col s12">
+        <br>
+        <canvas class="history-chart"></canvas>
     </div>
 </div>
-<p class="text-muted">Data is updated every {{update_period}} minutes &middot; Last updated: <span class="last-updated"></span></p>
 <script type="text/javascript" defer>
     google.charts.load('upcoming', {'packages':['geochart']});
     google.charts.setOnLoadCallback(loadPerformance);
@@ -59,7 +75,94 @@
                 var chart = new google.visualization.GeoChart(document.getElementById('chart1'));
 
                 chart.draw(data, options);
+
+                var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+                var chartData = {
+                    labels: months.slice(0, resp.history.total.length),
+                    datasets: [
+                        {
+                            label: "Average Response Time (ms)",
+                            tooltipLabel: 'Average Response Time',
+                            data: resp.history.avgResponse,
+                            yAxisID: 'avg',
+                            backgroundColor: "rgba(247,70,74,0.2)",
+                            borderColor: "rgba(247,70,74,1)",
+                            
+                            fill: false,
+                            lineTension: 0.1,
+                            borderCapStyle: 'butt',
+                            borderJoinStyle: 'miter',
+                            pointBorderWidth: 1,
+                            pointHoverRadius: 15,
+                            pointHoverBorderWidth: 2,
+                            pointRadius: 1,
+                            pointHitRadius: 25,
+                            spanGaps: false
+                        },
+                        {
+                            label: "Total Requests",
+                            data: resp.history.total,
+                            yAxisID: 'total',
+                            backgroundColor: "rgba(70,191,189,0.2)",
+                            borderColor: "rgba(70,191,189,1)",
+
+                            fill: false,
+                            lineTension: 0.1,
+                            borderCapStyle: 'butt',
+                            borderJoinStyle: 'miter',
+                            pointBorderWidth: 1,
+                            pointHoverRadius: 15,
+                            pointHoverBorderWidth: 2,
+                            pointRadius: 1,
+                            pointHitRadius: 25,
+                            spanGaps: false
+                        }
+                    ]
+                };
+                var historyChart = new Chart($('.history-chart'), {
+                    type: 'line',
+                    data: chartData,
+                    options: {
+                        tooltips: {
+                            mode: 'point',
+                            callbacks: {
+                                label: function(tooltipItem, data) {
+                                    if(tooltipItem.datasetIndex == 0) {
+                                        return data.datasets[tooltipItem.datasetIndex].tooltipLabel + ': ' + tooltipItem.yLabel + 'ms'
+                                    }
+                                    return data.datasets[tooltipItem.datasetIndex].label + ': ' + Number(tooltipItem.yLabel).toLocaleString();
+                                }
+                            }
+                        },
+                        scales: {
+                            yAxes: [{
+                                id: 'avg',
+                                type: 'linear',
+                                position: 'left',
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            },{
+                                id: 'total',
+                                type: 'linear',
+                                position: 'right',
+                                ticks: {
+                                    beginAtZero: true,
+                                    callback: function(value, index, values) {
+                                        return value.toLocaleString();
+                                    }
+                                }
+                            }]
+                        }
+                    }
+                });
             }
         });
     }
+
+        var colors = ['#BCDEF5', '#9BCEF1', '#65B2E7', '#1E96E9', '#0E79C3', '#0046B2', '#053197', '#00146D'];
+        for (var i = 0; i < colors.length; i++) {
+            $('.colors').append($('<span style="width:25px;height:25px;display:inline-block; margin-right: 1rem; background-color: ' + colors[i] + ';border-radius:2px;"></span>'));
+        };
 </script>
