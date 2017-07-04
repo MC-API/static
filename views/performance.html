@@ -6,7 +6,6 @@
             <li class="tab col s3"><a href="#stats">This Month ({{month}} {{year}})</a></li>
             <li class="tab col s3"><a href="#historical">Historical Data</a></li>
             <li class="tab col s3"><a href="#interday">Day-to-day Change</a></li>
-            <li class="tab col s3"><a href="#today">Today's Change</a></li>
         </ul>
     </div>
     <div id="stats" class="col s12">
@@ -36,10 +35,6 @@
     <div id="interday" class="col s12">
         <br>
         <canvas class="interday-chart"></canvas>
-    </div>
-    <div id="today" class="col s12">
-        <br>
-        <canvas class="today-chart"></canvas>
     </div>
 </div>
 <script type="text/javascript" defer>
@@ -285,60 +280,6 @@
                                         callback: function(value, index, values) {
                                             return value.toLocaleString();
                                         }
-                                    }
-                                }]
-                            }
-                        }
-                    });
-                }
-
-                // Today
-                {
-                    var chartData = {
-                        labels: new Array(resp.history.today.length),
-                        datasets: [
-                            {
-                                label: "Average Response Time (ms)",
-                                tooltipLabel: 'Average Response Time',
-                                data: resp.history.today,
-                                yAxisID: 'avg',
-                                backgroundColor: "rgba(247,70,74,0.2)",
-                                borderColor: "rgba(247,70,74,1)",
-                                
-                                fill: false,
-                                lineTension: 0.1,
-                                borderCapStyle: 'butt',
-                                borderJoinStyle: 'miter',
-                                pointBorderWidth: 1,
-                                pointHoverRadius: 15,
-                                pointHoverBorderWidth: 2,
-                                pointRadius: 1,
-                                pointHitRadius: 3,
-                                spanGaps: false
-                            }
-                        ]
-                    };
-
-                    var historyChart = new Chart($('.today-chart'), {
-                        type: 'line',
-                        data: chartData,
-                        options: {
-                            tooltips: {
-                                mode: 'point',
-                                callbacks: {
-                                    label: function(tooltipItem, data) {
-                                        if(tooltipItem.datasetIndex == 0) {
-                                            return data.datasets[tooltipItem.datasetIndex].tooltipLabel + ': ' + tooltipItem.yLabel + 'ms'
-                                        }
-                                        return data.datasets[tooltipItem.datasetIndex].label + ': ' + Number(tooltipItem.yLabel).toLocaleString();
-                                    }
-                                }
-                            },
-                            scales: {
-                                yAxes: [{
-                                    id: 'avg',
-                                    ticks: {
-                                        beginAtZero: true
                                     }
                                 }]
                             }
