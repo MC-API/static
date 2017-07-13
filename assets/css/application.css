@@ -259,11 +259,11 @@ td code.api-history-route {
 /* Created by icomoon so we don't need ALL of fontawesome */
 @font-face {
   font-family: 'mcapi';
-  src:    url('./fonts/mcapi.eot?y18508');
-  src:    url('./fonts/mcapi.eot?y18508#iefix') format('embedded-opentype'),
-      url('./fonts/mcapi.ttf?y18508') format('truetype'),
-      url('./fonts/mcapi.woff?y18508') format('woff'),
-      url('./fonts/mcapi.svg?y18508#mcapi') format('svg');
+  src:    url('../fonts/mcapi.eot?y18508');
+  src:    url('../fonts/mcapi.eot?y18508#iefix') format('embedded-opentype'),
+      url('../fonts/mcapi.ttf?y18508') format('truetype'),
+      url('../fonts/mcapi.woff?y18508') format('woff'),
+      url('../fonts/mcapi.svg?y18508#mcapi') format('svg');
   font-weight: normal;
   font-style: normal;
 }
