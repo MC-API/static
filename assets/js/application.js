@@ -80,6 +80,7 @@ $(document).ready(function() {
                         language: lang,
                         trigger: trigger
                     },
+                    cache: false,
                     async: true,
                     success: function(resp) {
                         $('.sandbox-error').stop().slideUp(350);
@@ -117,6 +118,7 @@ $(document).ready(function() {
                 url: '/v3/' + ele.attr('data-ajax') + '/' + ele.attr('data-ajax-arg'),
                 type: ele.attr('data-ajax') == 'server/favicon' ? 'head' : 'get',
                 async: true,
+                cache: false,
                 success: function(data, textStatus, obj) {
                     console.log(data, obj, typeof data);
                     var resp = typeof data == 'object' ? JSON.stringify(data, null, 4) : (typeof data == 'string' ? data : '<img src="/v3/' + ele.attr('data-ajax') + '/' + ele.attr('data-ajax-arg') +'">');
