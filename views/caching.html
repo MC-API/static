@@ -5,9 +5,15 @@
         <p>We have a cache for most of our APIs, this means that if what you are asking for has been requested recently it will be provided quicker than if we went to the origin.</p>
         <p>For example, if you request information about the server IP <kbd>mc.hypixel.net</kbd>, we will check if it has been requested recently, if so we will provide you with the same response.</p>
         <p>This also works if you request a favicon for a server we have pinged recently, so we don't need to unnecessarily ping the server again.</p>
+        <p>For those interested, we generally have 3 cache layers:</p>
+        <ul class="inline-disc">
+            <li>Internal &mdash; This is an in-memory store per <a href="//nodejs.org">node process</a>, the language the API server is written in.</li>
+            <li>Redis &mdash; We have a Redis cache in place for regions where multiple backend servers are running.</li>
+            <li>Varnish &mdash; We now also have a varnish cache in place, this replaced some cloudflare caching rules we had, which was less effective.</li>
+        </ul>
         <p><strong>How long do you cache for?</strong></p>
         <p>It depends which API you are querying, please see the table below for cache duration.</p>
-        <p>Our CDN provider, CloudFlare also caches some responses for performance reasons.</p>
+        <p>Our CDN provider, CloudFlare also caches some responses for performance and security reasons.</p>
 
         <table class="striped responsive-table highlight">
             <thead>
@@ -35,6 +41,7 @@
     <div class="col s12 m6">
         <h4>Caching responses</h4>
         <p>We highly suggest you cache API responses locally within your application.</p>
+        <p>To assist with this we send Cache-Control headers if you are sending ajax requests from a browser.</p>
         <p>There are several ways to do this depending on your application.</p>
 
         <h4>API Responses</h4>
@@ -51,6 +58,8 @@
             <li><kbd>MCAPI-Took</kbd> &dash; How long it took to process &amp; respond to your request, in milliseconds.</li>
             <li><kbd>MCAPI-Cache</kbd> &dash; If your request 'hit' our cache or not</li>
             <li><kbd>MCAPI-TTL</kbd> &dash; How long until the cached response expires (if applicable)</li>
+            <li><kbd>X-Varnish-Hits</kbd> &dash; Potentially the number of hits our varnish cache server has had for this resource</li>
+            <li><kbd>X-Varnish-Cache</kbd> &dash; Potentially if your request 'hit' our varnish cache server or not</li>
         </ul>
     </div>
 </div>
