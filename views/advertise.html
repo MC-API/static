@@ -1,0 +1,112 @@
+<h3>Advertise with us</h3>
+{{#user.authed}}
+{{#user.isAdvertising}}
+<div class="row">
+    <div class="col s12 m4">
+        <p><strong>Your advertising campaign:</strong></p>
+        <table class="striped">
+            <tbody>
+                <tr>
+                    <td>Views:</td>
+                    <td>{{user.advert.views}}</td>
+                </tr>
+                <tr>
+                    <td>Clicks:</td>
+                    <td>{{user.advert.clicks}}</td>
+                </tr>
+                <tr>
+                    <td>Time remaining:</td>
+                    <td>{{user.advert.timeleft}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{{/user.isAdvertising}}
+{{/user.authed}}
+{{^user.isAdvertising}}
+<p><strong>You do not have an active advertising campaign.</strong></p>
+<div class="row">
+    <div class="col m5 s12 offset-m1">
+        <div class="card light-green lighten-3">
+            <div class="card-content">
+                <span class="card-title">
+                    Top Advertisement
+                </span>
+                <p>Rules:</p>
+                <ul class="inline" style="margin: 0">
+                    <li>Can be a PNG or animated GIF</li>
+                    <li>850x100 Maximum Desktop Banner Size</li>
+                    <li>330x45 Maximum Mobile Banner Size</li>
+                    <li>Submission must be on imgur.com for manual approval</li>
+                </ul>
+            </div>
+            <div class="card-action">
+                {{#adverts.top}}
+                <span class="text-muted">{{adverts.top_message}}</span>
+                {{/adverts.top}}
+                {{^adverts.top}}
+                {{#user.authed}}
+                <a href="/advertise/new_campaign?slot=top" class="purple-text">Purchase</a>
+                {{/user.authed}}
+                {{^user.authed}}
+                <span class="text-muted">Login Required</span>
+                {{/user.authed}}
+                {{/adverts.top}}
+                <span class="right label-cost label-cost-green">
+                    &dollar;35
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="col m5 s12">
+        <div class="card teal lighten-4">
+            <div class="card-content">
+                <span class="card-title">
+                    Bottom Advertisement
+                </span>
+                <p>Rules:</p>
+                <ul class="inline" style="margin: 0">
+                    <li>Can be a PNG or animated GIF</li>
+                    <li>850x100 Maximum Desktop Banner Size</li>
+                    <li>330x45 Maximum Mobile Banner Size</li>
+                    <li>Submission must be on imgur.com for manual approval</li>
+                </ul>
+            </div>
+            <div class="card-action">
+                {{#adverts.bottom}}
+                <span class="text-muted">{{adverts.bottom_message}}</span>
+                {{/adverts.bottom}}
+                {{^adverts.bottom}}
+                {{#user.authed}}
+                <a href="/advertise/new_campaign?slot=bottom" class="purple-text">Purchase</a>
+                {{/user.authed}}
+                {{^user.authed}}
+                <span class="text-muted">Login Required</span>
+                {{/user.authed}}
+                {{/adverts.bottom}}
+                <span class="right label-cost label-cost-blue">
+                    &dollar;15
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col m6 s12 offset-m3">
+        <div class="card red lighten-3">
+            <div class="card-content">
+                <span class="card-title">
+                    Terms and Conditions
+                </span>
+                <ul class="inline" style="margin-top: 0">
+                    <li>Advertisements are non-refundable.</li>
+                    <li>Nothing illegal or inappropriate.</li>
+                    <li>You may have a maximum of one (1) advertising campaign active at any time.</li>
+                    <li>All advertising campaigns last for 31 days.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{{/user.isAdvertising}}

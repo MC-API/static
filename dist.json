@@ -1,0 +1,12 @@
+{
+    "keycdn" : {
+        "dist" : [
+            "/assets/flags/*",
+            "/assets/fonts/*",
+            "/assets/*.png",
+            "/assets/favicon.ico"
+        ],
+        "purge" : [],
+        "distExemptPurge" : []
+    }
+}

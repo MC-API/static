@@ -1,0 +1,299 @@
+<h3>Performance statistics</h3>
+<div class="colors"></div>
+<div class="row">
+    <div class="col s12">
+        <ul class="tabs">
+            <li class="tab col s3"><a href="#stats">This Month ({{month}} {{year}})</a></li>
+            <li class="tab col s3"><a href="#historical">Historical Data</a></li>
+            <li class="tab col s3"><a href="#interday">Day-to-day Change</a></li>
+        </ul>
+    </div>
+    <div id="stats" class="col s12">
+        <br>
+        <div class="row">
+            <div class="col m4 s12">
+                <h5>Today <small>{{today_date}}</small></h5>
+                <p><strong>Average response time:</strong> <span id="today-ms-avg" style="color:#bfbfbf">calculating&hellip;</span></p>
+                <p><strong>Total requests:</strong> <span id="today-total" style="color:#bfbfbf">calculating&hellip;</span></p>
+                <p><strong>Error rate:</strong> <span id="today-error-rate" style="color:#bfbfbf">calculating&hellip;</span></p>
+                <h5 style="border-top: 1px solid #d6d6d6; padding-top: 8px">Month <small>{{month}} {{year}}</small></h5>
+                <p><strong>Average response time:</strong> <span id="month-ms-avg" style="color:#bfbfbf">calculating&hellip;</span></p>
+                <p><strong>Total requests:</strong> <span id="month-total" style="color:#bfbfbf">calculating&hellip;</span></p>
+                <p><strong>Error rate:</strong> <span id="month-error-rate" style="color:#bfbfbf">calculating&hellip;</span></p>
+            </div>
+            <div class="col m8 s12">
+                <h5>Popularity by country</h5>
+                <div id="chart1"></div>
+            </div>
+        </div>
+        <p class="text-muted">Data is updated every {{update_period}} minutes &middot; Last updated: <span class="last-updated"></span></p>
+    </div>
+    <div id="historical" class="col s12">
+        <br>
+        <canvas class="history-chart"></canvas>
+    </div>
+    <div id="interday" class="col s12">
+        <br>
+        <canvas class="interday-chart"></canvas>
+    </div>
+</div>
+<script type="text/javascript" defer>
+    google.charts.load('upcoming', {'packages':['geochart']});
+    google.charts.setOnLoadCallback(loadPerformance);
+
+    function loadPerformance() {
+        $.ajax({
+            url: '/performance',
+            type: 'post',
+            data: {
+                _csrf: $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function(resp) {
+                var monthData = resp[resp.currentDate.year][resp.currentDate.month];
+
+                $('#today-ms-avg').css('color', '').text(monthData[resp.currentDate.day].performance.avg_response + 'ms');
+                $('#today-total').css('color', '').text(parseInt(monthData[resp.currentDate.day].performance.total).toLocaleString());
+                $('#today-error-rate').css('color', '').text(monthData[resp.currentDate.day].performance.error_rate + '%');
+
+                $('#month-ms-avg').css('color', '').text(monthData.performance.avg_response + 'ms');
+                $('#month-total').css('color', '').text(parseInt(monthData.performance.total).toLocaleString());
+                $('#month-error-rate').css('color', '').text(monthData.performance.error_rate + '%');
+
+                var lastUpdate = new Date(resp.lastUpdate);
+                var hour = lastUpdate.getHours();
+                var min = lastUpdate.getMinutes();
+                if (min < 10) {
+                    min = "0" + min;
+                }
+                var ampm = hour < 12 ? "am" : "pm";
+                hour = hour >= 12 ? hour-12 : hour;
+                hour = hour <= 0 ? 12 : hour;
+
+                $('.last-updated').text(hour + ':' + min + ' ' + ampm);
+
+                var data = google.visualization.arrayToDataTable(monthData.countries);
+
+                var options = {
+                    colorAxis: {values: [0, 100, 2500, 10000, 100000, 250000, 500000, 1000000], colors: ['#BCDEF5', '#9BCEF1', '#65B2E7', '#1E96E9', '#0E79C3', '#0046B2', '#053197', '#00146D']}
+                };
+
+                var chart = new google.visualization.GeoChart(document.getElementById('chart1'));
+
+                chart.draw(data, options);
+
+                var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+                // Historical Data
+                {
+                    var chartData = {
+                        labels: months.slice(0, resp.history.year.total.length),
+                        datasets: [
+                            {
+                                label: "Average Response Time (ms)",
+                                tooltipLabel: 'Average Response Time',
+                                data: resp.history.year.avgResponse,
+                                yAxisID: 'avg',
+                                backgroundColor: "rgba(247,70,74,0.2)",
+                                borderColor: "rgba(247,70,74,1)",
+                                
+                                fill: false,
+                                lineTension: 0.1,
+                                borderCapStyle: 'butt',
+                                borderJoinStyle: 'miter',
+                                pointBorderWidth: 1,
+                                pointHoverRadius: 15,
+                                pointHoverBorderWidth: 2,
+                                pointRadius: 1,
+                                pointHitRadius: 25,
+                                spanGaps: false
+                            },
+                            {
+                                label: "Total Requests",
+                                data: resp.history.year.total,
+                                yAxisID: 'total',
+                                backgroundColor: "rgba(70,191,189,0.2)",
+                                borderColor: "rgba(70,191,189,1)",
+
+                                fill: false,
+                                lineTension: 0.1,
+                                borderCapStyle: 'butt',
+                                borderJoinStyle: 'miter',
+                                pointBorderWidth: 1,
+                                pointHoverRadius: 15,
+                                pointHoverBorderWidth: 2,
+                                pointRadius: 1,
+                                pointHitRadius: 25,
+                                spanGaps: false
+                            }
+                        ]
+                    };
+                    var historyChart = new Chart($('.history-chart'), {
+                        type: 'line',
+                        data: chartData,
+                        options: {
+                            tooltips: {
+                                mode: 'point',
+                                callbacks: {
+                                    label: function(tooltipItem, data) {
+                                        if(tooltipItem.datasetIndex == 0) {
+                                            return data.datasets[tooltipItem.datasetIndex].tooltipLabel + ': ' + tooltipItem.yLabel + 'ms'
+                                        }
+                                        return data.datasets[tooltipItem.datasetIndex].label + ': ' + Number(tooltipItem.yLabel).toLocaleString();
+                                    }
+                                }
+                            },
+                            scales: {
+                                yAxes: [{
+                                    id: 'avg',
+                                    type: 'linear',
+                                    position: 'left',
+                                    ticks: {
+                                        beginAtZero: true
+                                    }
+                                },{
+                                    id: 'total',
+                                    type: 'linear',
+                                    position: 'right',
+                                    ticks: {
+                                        beginAtZero: true,
+                                        callback: function(value, index, values) {
+                                            return value.toLocaleString();
+                                        }
+                                    }
+                                }]
+                            }
+                        }
+                    });
+                }
+
+                // Interday
+                {
+                    var labels = [];
+                    var now = new Date();
+                    var daysInMonth = new Date(now.getFullYear(), now.getMonth()+1, 0).getDate();
+
+                    for (var i = 1; i <= daysInMonth; i++) {
+                        if(i > now.getDate()) {
+                            break;
+                        }
+
+                        labels.push(i+nth(i));
+                    }
+
+                    var chartData = {
+                        labels: labels,
+                        datasets: [
+                            {
+                                label: "Average Response Time (ms)",
+                                tooltipLabel: 'Average Response Time',
+                                data: resp.history.interday.avgResponse,
+                                yAxisID: 'avg',
+                                backgroundColor: "rgba(247,70,74,0.2)",
+                                borderColor: "rgba(247,70,74,1)",
+                                
+                                fill: false,
+                                lineTension: 0.1,
+                                borderCapStyle: 'butt',
+                                borderJoinStyle: 'miter',
+                                pointBorderWidth: 1,
+                                pointHoverRadius: 15,
+                                pointHoverBorderWidth: 2,
+                                pointRadius: 1,
+                                pointHitRadius: 25,
+                                spanGaps: false
+                            },
+                            {
+                                label: "Total Requests",
+                                data: resp.history.interday.total,
+                                yAxisID: 'total',
+                                backgroundColor: "rgba(70,191,189,0.2)",
+                                borderColor: "rgba(70,191,189,1)",
+
+                                fill: false,
+                                lineTension: 0.1,
+                                borderCapStyle: 'butt',
+                                borderJoinStyle: 'miter',
+                                pointBorderWidth: 1,
+                                pointHoverRadius: 15,
+                                pointHoverBorderWidth: 2,
+                                pointRadius: 1,
+                                pointHitRadius: 25,
+                                spanGaps: false
+                            }
+                        ]
+                    };
+
+                    // https://stackoverflow.com/questions/39293816/how-to-draw-horizontal-line-on-bar-chart-chartjs
+                    Chart.pluginService.register({
+                        afterDraw: function(chart) {
+                            if(typeof chart.config.options.lineAt != 'undefined') {
+                                var lineAt = chart.config.options.lineAt;
+                                var ctxPlugin = chart.chart.ctx;
+                                var xAxe = chart.scales[chart.config.options.scales.xAxes[0].id];
+                                var yAxe = chart.scales[chart.config.options.scales.yAxes[0].id];
+
+                                if(yAxe.min != 0) return;
+
+                                ctxPlugin.strokeStyle = "red";
+                                ctxPlugin.lineWidth = 2;
+                                ctxPlugin.setLineDash([16])
+                                ctxPlugin.beginPath();
+                                lineAt = (lineAt - yAxe.min) * (100 / yAxe.max);
+                                lineAt = (100 - lineAt) / 100 * (yAxe.height) + yAxe.top;
+                                ctxPlugin.moveTo(xAxe.left, lineAt);
+                                ctxPlugin.lineTo(xAxe.right, lineAt);
+                                ctxPlugin.stroke();
+                            }
+                        }
+                    });
+
+                    var historyChart = new Chart($('.interday-chart'), {
+                        type: 'line',
+                        data: chartData,
+                        options: {
+                            lineAt: monthData.performance.avg_response,
+                            tooltips: {
+                                mode: 'point',
+                                callbacks: {
+                                    label: function(tooltipItem, data) {
+                                        if(tooltipItem.datasetIndex == 0) {
+                                            return data.datasets[tooltipItem.datasetIndex].tooltipLabel + ': ' + tooltipItem.yLabel + 'ms'
+                                        }
+                                        return data.datasets[tooltipItem.datasetIndex].label + ': ' + Number(tooltipItem.yLabel).toLocaleString();
+                                    }
+                                }
+                            },
+                            scales: {
+                                yAxes: [{
+                                    id: 'avg',
+                                    type: 'linear',
+                                    position: 'left',
+                                    ticks: {
+                                        beginAtZero: true
+                                    }
+                                },{
+                                    id: 'total',
+                                    type: 'linear',
+                                    position: 'right',
+                                    ticks: {
+                                        beginAtZero: true,
+                                        callback: function(value, index, values) {
+                                            return value.toLocaleString();
+                                        }
+                                    }
+                                }]
+                            }
+                        }
+                    });
+                }
+            }
+        });
+    }
+
+    function nth(n){return["st","nd","rd"][((n+90)%100-10)%10-1]||"th"}
+
+        var colors = ['#BCDEF5', '#9BCEF1', '#65B2E7', '#1E96E9', '#0E79C3', '#0046B2', '#053197', '#00146D'];
+        for (var i = 0; i < colors.length; i++) {
+            $('.colors').append($('<span style="width:25px;height:25px;display:inline-block; margin-right: 1rem; background-color: ' + colors[i] + ';border-radius:2px;"></span>'));
+        };
+</script>

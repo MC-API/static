@@ -1,0 +1,13 @@
+<h3>Documentation <small>Blacklisted</small></h3>
+<p>You can easily check if a server is on the Mojang server blacklist. If a server is on the blacklist, players will be unable to join.</p>
+<p>A request could look something like this to see if <a href="http://arkhamnetwork.org" target="_blank" rel="noopener">Arkham Network</a> is blocked:</p>
+<pre class="syntax-request-format"><kbd class="method">GET</kbd>https://{{mcapi.region}}.mc-api.net/v3/server/blacklisted/playmc.mx</pre>
+
+<span class="right"><button class="btn docs-btn teal darken-2" data-ajax="server/blacklisted" data-ajax-arg="playmc.mx">Try Me!</button></span>
+<p>To try this API, click the button on the right:</p>
+
+<pre class="syntax-request-format response" id="docs-ajax-response" data-ajax="server/blacklisted"> JSON response will be shown here</pre>
+
+<h4>Response Explained</h4>
+<p>Most of the response is self-explanatory, the <kbd>lastUpdate</kbd> value is when we last fetched the blacklist from Mojang. We do this in the background once per hour.</p>
+<p>Cache information is sent in the HTTP headers, which are explained <a href="/caching">here</a>.</p>

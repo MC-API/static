@@ -1,0 +1,44 @@
+<head>
+    {{#mcapi.enableAdsense}}
+    {{! Trying out adsense }}
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-4442711375881628",
+        enable_page_level_ads: true
+      });
+    </script>
+    {{/mcapi.enableAdsense}}
+
+    <meta charset="utf-8">
+    {{#title}}
+    <title>{{{title}}} &middot; MC-API</title>
+    {{/title}}
+    {{^title}}
+    <title>MC-API</title>
+    {{/title}}
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="A collection of Minecraft related API's">
+    <meta name="keywords" content="minecraft,mojang,api,mcapi,mc-api,minecraft-api,minecraftapi,bukkit,spigot,spigotmc">
+
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="{{mcapi.assets.base}}{{mcapi.assets.css}}/application.css?{{cacheBuster}}">
+    <link rel="stylesheet" type="text/css" href="{{mcapi.assets.base}}{{mcapi.assets.css}}/flags.min.css?{{cacheBuster}}">
+    {{#custom_styles}}
+    <link rel="stylesheet" type="text/css" href="{{.}}">
+    {{/custom_styles}}
+    <link rel="shortcut icon" href="/assets/favicon.ico"/>
+
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+    {{#custom_scripts}}
+    <script type="text/javascript" src="{{.}}"></script>
+    {{/custom_scripts}}
+    <script type="text/javascript" src="{{mcapi.assets.base}}{{mcapi.assets.js}}/application.js?{{cacheBuster}}"></script>
+
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+    <script>window.addEventListener("load", function() {window.cookieconsent.initialise({"palette": {"popup": {"background": "#edeff5","text": "#838391"},"button": {"background": "#4b81e8"}},"theme": "edgeless","content": {"link": "What are cookies?"}})});</script>
+</head>

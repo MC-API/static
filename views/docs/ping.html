@@ -1,0 +1,14 @@
+<h3>Documentation <small>Ping</small></h3>
+<p>We provide a simple api which allows you to ping Minecraft servers for information such as MOTD, <a href="/docs/favicon">Favicon</a>, Player count and version.</p>
+<p>A request could look something like this to find information about <a href="https://hypixel.net" target="_blank" rel="noopener">Hypixel</a>:</p>
+<pre class="syntax-request-format"><kbd class="method">GET</kbd>https://{{mcapi.region}}.mc-api.net/v3/server/ping/mc.hypixel.net</pre>
+
+<span class="right"><button class="btn docs-btn teal darken-2" data-ajax="server/ping" data-ajax-arg="mc.hypixel.net">Try Me!</button></span>
+<p>To try this API, click the button on the right:</p>
+
+<pre class="syntax-request-format response" id="docs-ajax-response" data-ajax="server/ping"> JSON response will be shown here</pre>
+
+<h4>Response Explained</h4>
+<p>Most of the response is self-explanatory, less obvious fields are explained below.</p>
+<p>The <code>took</code>, <code>fetch</code> and <code>cache</code> fields are explained <a href="/caching">here</a>.</p>
+<p>If the server you queried was an SRV record we will resolve it and provide the original IP address and port within the <code>dns</code> object. If this object is not present then we could not detect an SRV record.</p>

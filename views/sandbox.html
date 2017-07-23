@@ -1,0 +1,72 @@
+<span class="right">
+    <a class="btn red" href="/sandbox">Start Again?</a>
+</span>
+
+<h3>Sandbox</h3>
+
+<div class="card-panel cyan lighten-4">
+    <strong>What is this place?</strong>
+    <br>
+    This is our request sandbox, it allows you to see code samples and learn how to shape requests to our APIs.
+    <br>To change the language the snippet appears as click the "Code Syntax" button below.
+</div>
+
+<div class="card-panel red lighten-2 sandbox-error" style="display:none">
+    <strong>Error: </strong> <span class="error-text"></span>
+</div>
+
+<div class="row sandbox-container">
+    <div class="col s12 m5">
+        <h4>Prepare your request</h4>
+
+        <div class="parameters">
+            <div class="sb-step step1">
+                <p>What type of request are you making?</p>
+
+                <button type="button" data-sb-action="ping" class="btn waves-effect waves-light deep-purple">Server Ping</button>
+                <button type="button" data-sb-action="favicon" class="btn waves-effect waves-light deep-purple">Server Favicon</button>
+                <button type="button" data-sb-action="blacklist" class="btn waves-effect waves-light deep-purple">Server Blacklist Check</button>
+            </div>
+
+            <div class="sb-step step2">
+                <p>Enter your parameters</p>
+
+                <div class="sb-param input-field" data-param="server">
+                    <input name="server_field" type="text" class="validate" id="server_field">
+                    <label for="server_field">Server IP</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col s12 m7">
+        <h4>Example Code Snippet</h4>
+
+        <div class="snippet">
+            <div class="card">
+                <div class="card-content">
+                    <span class="right">
+                        <a data-activates="langChangeDropdown" class="dropdown-button btn">Code Syntax</a>
+                        
+                        <ul id='langChangeDropdown' class='dropdown-content'>
+                            <li><a data-action="langChange" data-lang="curl">curl</a></li>
+                            <li><a data-action="langChange" data-lang="node">Node.js</a></li>
+                            <li><a data-action="langChange" data-lang="ruby">Ruby</a></li>
+                            <li><a data-action="langChange" data-lang="go">Go</a></li>
+                            <li><a data-action="langChange" data-lang="java">Java</a></li>
+                            <li><a data-action="langChange" data-lang="php">PHP</a></li>
+                            <li><a data-action="langChange" data-lang="python">Python</a></li>
+                            <li><a data-action="langChange" data-lang="javascript">JavaScript</a></li>
+                        </ul>
+                    </span>
+
+                    <span style="margin-top:-1px" class="card-title" id="language">curl</span>
+
+                    <div class="code-snippet" current-lang="curl">
+                        <span class="code-info">Your code snippet will appear here.</span>
+                        <pre><code></code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
