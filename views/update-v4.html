@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MC-API</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="An explanation and update about the v4 update.">
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/readable/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/style/styles.css">
+    <link rel="shortcut icon" href="//raw.githubusercontent.com/MC-API/static/master/assets/favicon.ico"/>
+</head>
+<body>
+<div class="container card">
+    <div class="content">
+        <h2><i class="fa fa-code"></i> MC-API</h2>
+        <hr>
+        <p><strong>tl;dr: On August 7th 2016 we deprecated our UUID, Name and History APIs, they are no longer accessible. Please update your applications to use an alternative, some are listed below. All of our other APIs will continue to function.</strong></p>
+        <p><em>Note:</em> This post had to be rewritten as the original was lost, the original went into much more detail and was easier to understand.</p>
+        <p class="hello">An update about v4</p>
+        <p>A couple of months ago we started to do a rewrite of the API (v4) which was largely prompted by the fact that most API requests were failing. The solution that was planned was to implement an API key system.</p>
+        <p>This would've required all users of our most intensive APIs (UUID, Username and History) to provide an API key which would be limited to a pre-defined amount.</p>
+        <p>There were a couple of flaws with this:</p>
+        <ul>
+            <li>It would break the developer eco-system for plugins (a server-owner would need an api key for a "random" website, would also break existing plugins)</li>
+            <li>It would lose backwards-compatibility</li>
+            <li>It would be hard for some users to migrate</li>
+            <li>It isn't an elegant or perfect solution to the problem we are facing</li>
+        </ul>
+        <p><em>Side note:</em> v4 is still planned, as a redesign of the main website and a backend rewrite. This will be released in the near future.</p>
+        <p>The problem we have been facing recently is an excessive amount of requests being sent to some of our APIs, a large percentage of these are malicious and are intended to fail and cause our servers to be rate limited by Mojang.</p>
+        <p>At the time of writing &dash; 30th July 2016 &dash; we are receiving in excess of 250 requests per second, 24 hours a day. Our infrastructure is relatively small, and the way Mojang rate limit is very restrictive. You can see an image from NewRelic which monitors our Nginx instances, <a href="http://i.imgur.com/sirKJsl.png">here</a>.</p>
+        <p>Most of the Mojang API rate limits based on IP and allows 600 requests per 10 minutes (about 1 per second) the fact that we are receiving more than 250 per second, means we have no chance of responding correctly to even a small portion.</p>
+        <p>MC-API has always been funded by donations and any excess funded personally by us, the developers. While donations are a rare occurance, we are extremely grateful for all contributions.</p>
+        <p>The fact that donations are so rare means that it is difficult to add more capacity and servers. Generally servers come with 1 IP address, which means we would need over 250 servers to respond to each query.</p>
+        <p class="hello">A sad step we are taking</p>
+        <p>Sadly, we will have deprecated our UUID, Name and History APIs on <strong>August 7th</strong>. This meant that these APIs are no longer accessible, we gave 1 week notice before anything was done, to give users a chance to update their applications. We highly recommend updating your applications, alternatives are listed below.</p>
+        <p>We are doing this for a number of reasons:</p>
+        <ul>
+            <li>The service is becoming hard to sustain, and expensive to add more capacity</li>
+            <li>We are unable to respond to most of these API requests</li>
+            <li>A lot of requests are malicious, are destined to fail and intended to cause our servers to be rate limited.</li>
+        </ul>
+        <p>As mentioned above, a lot of requests are intended to fail, but still end up querying mojangs API, this means our servers are likely to be rate limited, meaning legitimate requests will also fail.</p>
+        <p>This is a classic case of the minority ruining it for the majority.</p>
+        <p>While we may re-add these APIs in the future, it is very unlikely within 2016.</p>
+        <p>We apologise for the inconveniencen this will cause and feel we have let you down.</p>
+        <hr>
+        <p class="hello">Is there an alternative?</p>
+        <p>There are several alternatives, a couple are listed below.</p>
+        <ul>
+            <li><a href="https://api.minepay.net/mapi/index.html">MinePay API</a> &dash; Maintained by <a href="https://twitter.com/minepay_">MinePay</a></li>
+            <li><a href="http://mcapi.ca/">MCAPI.ca</a> &dash; Maintained by <a href="https://twitter.com/itsyive">Yive</a></li>
+        </ul>
+        <p class="hello">Is there no way to raise funds?</p>
+        <p>Our primary income source is donations, which are completely optional and go directly to paying for the servers.</p>
+        <p>We don't get many donations, and can not thank you enough if you have ever donated.</p>
+        <p>Therefore MC-API is paid for personally by us, the developers. It's quite expensive.</p>
+        <p>We have evaluated adding advertising, and have concluded this would not be a solution to this particular problem.</p>
+        <p class="hello">When is this happening?</p>
+        <p>It has already happened! On <strong>August 7th</strong>, these APIs were deprecated and are no longer accessible. Please update your applications using an alternative, some are listed above.</p>
+        <p class="hello">Is there no way to block the malicious requests?</p>
+        <p>Due to the nature of our API, open, anonymous and free, things like this are bound to happen.</p>
+        <p>It is also extremely difficult to detect and block malicious requests, we have implemented some measures, but they are not long term.</p>
+        <p class="hello">Is this the end of MC-API?</p>
+        <p>Nope! All of our other APIs will continue to operate and we have a redesign planned which is coming soon.</p>
+        <p class="hello">I have another question!</p>
+        <p>The easiest and quickest way to contact us is through twitter. You can tweet <a href="//twitter.com/mc_api">@mc_api</a>.</p>
+    </div>
+    <hr>
+    <footer>
+        <ul class="nav nav-pills">
+            <li class="text-muted disclaimer">MC-API is not affiliated with Mojang AB, Microsoft or Minecraft.net</li>
+            <li class="pull-right">
+                <a>&copy; 2016 mc-api.net</a>
+            </li>
+        </ul>
+    </footer>
+</div>
+<br>
+</body>
+</html>

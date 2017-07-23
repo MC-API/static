@@ -16,9 +16,9 @@ Once your pull request has been approved, it will be deployed to our servers.
 
 Mirrors
 ======
-| Hostname        | Location           | Host  | Enum Constant |
+| Hostname        | Location           | Host |
 | ------------- |:-------------:|:-----:|:---------:|
-| [eu.mc-api.net](https://eu.mc-api.net)      | London, England | [DigitalOcean](https://m.do.co/c/f8c7ada39e1b) | EU |
-| [us.mc-api.net](https://us.mc-api.net)      | New York City, USA | [DigitalOcean](https://m.do.co/c/f8c7ada39e1b) | US |
+| [eu.mc-api.net](https://eu.mc-api.net)      | London, England | [DigitalOcean](https://m.do.co/c/f8c7ada39e1b) |
+| [us.mc-api.net](https://us.mc-api.net)      | New York City, USA | [DigitalOcean](https://m.do.co/c/f8c7ada39e1b) |
 
 There was previously an AU region, it may come back in the future however it was least used (less than 500 requests per month)
