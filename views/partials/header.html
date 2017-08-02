@@ -19,6 +19,7 @@
     {{/title}}
     <meta http-equiv="content-type" content="text/html;charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0D47A1">
 
     <meta name="description" content="A collection of Minecraft related API's">
     <meta name="keywords" content="minecraft,mojang,api,mcapi,mc-api,minecraft-api,minecraftapi,bukkit,spigot,spigotmc">
@@ -36,9 +37,9 @@
     {{#custom_scripts}}
     <script type="text/javascript" src="{{.}}"></script>
     {{/custom_scripts}}
-    <script type="text/javascript" src="{{mcapi.assets.base}}{{mcapi.assets.js}}/application.js?{{cacheBuster}}"></script>
+    <script type="text/javascript" src="{{mcapi.assets.base}}{{mcapi.assets.js}}/application.js?{{cacheBuster}}" defer></script>
 
-    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
-    <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
-    <script>window.addEventListener("load", function() {window.cookieconsent.initialise({"palette": {"popup": {"background": "#edeff5","text": "#838391"},"button": {"background": "#4b81e8"}},"theme": "edgeless","content": {"link": "What are cookies?"}})});</script>
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.4/cookieconsent.min.css" />
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.4/cookieconsent.min.js" defer></script>
+    <script>window.addEventListener("load", function() {window.cookieconsent.initialise({"palette": {"popup": {"background": "#edeff5","text": "#838391"},"button": {"background": "#4b81e8"}},"theme": "edgeless","content": {"link": "What are cookies?"}});  $('.cc-window .cc-message a.cc-link').attr('rel', 'noopener'); });</script>
 </head>
