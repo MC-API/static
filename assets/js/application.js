@@ -13,7 +13,7 @@ $(document).ready(function() {
                 $('.sandbox-container .code-snippet').attr('data-type', action);
 
                 $('button[data-sb-action!="' + action + '"]').stop().fadeOut(400, function() {
-                    if(action == 'ping' || action == 'favicon' || action == 'blacklist') {
+                    if(action == 'ping' || action == 'favicon' || action == 'blacklisted') {
                         $('.sb-param[data-param="server"]').show();
                     }
 
