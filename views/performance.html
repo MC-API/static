@@ -1,4 +1,7 @@
 <h3>Performance statistics</h3>
+<p><strong class="red-text">Notice:</strong> These statistics only reflect performance of requests hitting API servers. Cached requests/responses are not included as they do not reach an API server.</p>
+<p>This may cause response times to rise due to less requests keeping API server cache (Redis) fresh.</p>
+<p><strong class="purple-text">Hint:</strong> Error rate includes requests which timeout (target server could be down)</p>
 <div class="colors"></div>
 <div class="row">
     <div class="col s12">
@@ -124,6 +127,26 @@
                                 pointRadius: 1,
                                 pointHitRadius: 25,
                                 spanGaps: false
+                            },
+
+                            {
+                                label: "Average Error Rate (%)",
+                                tooltipLabel: 'Average Error Rate',
+                                data: resp.history.year.errors,
+                                yAxisID: 'avg',
+                                backgroundColor: "rgba(134,51,255,0.2)",
+                                borderColor: "rgba(134,51,255,1)",
+                                
+                                fill: false,
+                                lineTension: 0.1,
+                                borderCapStyle: 'butt',
+                                borderJoinStyle: 'miter',
+                                pointBorderWidth: 1,
+                                pointHoverRadius: 15,
+                                pointHoverBorderWidth: 2,
+                                pointRadius: 1,
+                                pointHitRadius: 25,
+                                spanGaps: false
                             }
                         ]
                     };
@@ -219,6 +242,25 @@
                                 pointRadius: 1,
                                 pointHitRadius: 25,
                                 spanGaps: false
+                            },
+                            {
+                                label: "Average Error Rate (%)",
+                                tooltipLabel: 'Average Error Rate',
+                                data: resp.history.interday.errors,
+                                yAxisID: 'avg',
+                                backgroundColor: "rgba(134,51,255,0.2)",
+                                borderColor: "rgba(134,51,255,1)",
+                                
+                                fill: false,
+                                lineTension: 0.1,
+                                borderCapStyle: 'butt',
+                                borderJoinStyle: 'miter',
+                                pointBorderWidth: 1,
+                                pointHoverRadius: 15,
+                                pointHoverBorderWidth: 2,
+                                pointRadius: 1,
+                                pointHitRadius: 25,
+                                spanGaps: false
                             }
                         ]
                     };
@@ -292,8 +334,8 @@
 
     function nth(n){return["st","nd","rd"][((n+90)%100-10)%10-1]||"th"}
 
-        var colors = ['#BCDEF5', '#9BCEF1', '#65B2E7', '#1E96E9', '#0E79C3', '#0046B2', '#053197', '#00146D'];
-        for (var i = 0; i < colors.length; i++) {
-            $('.colors').append($('<span style="width:25px;height:25px;display:inline-block; margin-right: 1rem; background-color: ' + colors[i] + ';border-radius:2px;"></span>'));
-        };
+    // var colors = ['#BCDEF5', '#9BCEF1', '#65B2E7', '#1E96E9', '#0E79C3', '#0046B2', '#053197', '#00146D'];
+    // for (var i = 0; i < colors.length; i++) {
+    //     $('.colors').append($('<span style="width:25px;height:25px;display:inline-block; margin-right: 1rem; background-color: ' + colors[i] + ';border-radius:2px;"></span>'));
+    // };
 </script>
