@@ -2,6 +2,26 @@ $(document).ready(function() {
     $('.simple-tip').tooltip({position: 'top', delay: 25})
     $('.dropdown-button').dropdown();
 
+    {
+        // (http://blog.dynamicdrive.com/detecting-adblock-on-your-site-and-logging-it-to-google-analytics/)
+        // The ad revenue is not important, but it would be useful to know
+        // how many users are using adblock to evaluate if ads should stay/go.
+        // After all, it helps pays for the servers
+        // This piece of code tests for adblock (roughly) and then records to google analytics
+        var test = document.createElement('div');
+        test.innerHTML = '&nbsp;';
+        test.className = 'adsbox';
+        document.body.appendChild(test);
+
+        setTimeout(function() {
+            if(test.offsetHeight === 0) {
+                ga('send', 'event', 'Ad Setting', 'Adblock', 'Enabled');
+            }
+
+            test.remove();
+        }, 300);
+    }
+
     if($('.sandbox-container').length) {
         $('button[data-sb-action]').on('click', function(e) {
             e.preventDefault();
