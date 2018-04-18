@@ -1,6 +1,5 @@
 <head>
     {{#mcapi.enableAdsense}}
-    {{! Trying out adsense }}
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <script>
       (adsbygoogle = window.adsbygoogle || []).push({
@@ -38,8 +37,4 @@
     <script type="text/javascript" src="{{.}}"></script>
     {{/custom_scripts}}
     <script type="text/javascript" src="{{mcapi.assets.base}}{{mcapi.assets.js}}/application.js?{{cacheBuster}}" defer></script>
-
-    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.4/cookieconsent.min.css" />
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.4/cookieconsent.min.js" defer></script>
-    <script>window.addEventListener("load", function() {window.cookieconsent.initialise({"palette": {"popup": {"background": "#edeff5","text": "#838391"},"button": {"background": "#4b81e8"}},"theme": "edgeless","content": {"link": "What are cookies?"}});  $('.cc-window .cc-message a.cc-link').attr('rel', 'noopener'); });</script>
 </head>
