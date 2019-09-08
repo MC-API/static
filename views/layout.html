@@ -13,9 +13,9 @@
                 <li><a href="/logout">Logout</a></li>
                 {{/user.authed}}
                 {{/mcapi.accounts}}
-                <li><a class="dropdown-button" data-activates="change-server-dropdown"><span class="flag-icon flag-icon-{{mcapi.flag}}"></span> Change Server &#9660;</a></li>
+                <li class="hide"><a class="dropdown-button" data-activates="change-server-dropdown"><span class="flag-icon flag-icon-{{mcapi.flag}}"></span> Change Server &#9660;</a></li>
             </ul>
-            <ul id="change-server-dropdown" class="dropdown-content">
+            <ul id="change-server-dropdown" class="dropdown-content hide">
                 <li><a class="disabled" disabled>Change Server</a></li>
                 <li class="divider"></li>
                 {{#mcapi.region_list}}
