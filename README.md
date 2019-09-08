@@ -9,8 +9,10 @@ Supported by
 ======
 
 MC-API is generously supported by:
-- [DigitalOcean](https://m.do.co/c/f8c7ada39e1b), who provide reliable server hosting
-- [Bugsnag](https://bugsnag.com), who provide a fantastic error tracking platform
+- [Bugsnag](https://bugsnag.com), who provide a fantastic error tracking platform to us free of charge
+- [DigitalOcean](https://m.do.co/c/f8c7ada39e1b), who provide reliable server hostingat affordable prices
+
+![Bugsnag Logo](/bugsnag_logo.png) ![DigitalOcean Logo](/digitalocean_logo.png)
 
 Contributing
 ======
